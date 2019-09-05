@@ -43,16 +43,31 @@ var triviaGameObj = {
 
 // Event Listeners 
 
-
-// Design start game screens/progression 
 // Choose 1 or 2 players 
+// Listen for upArrow 
+$(document).on('keydown',function(e) {
+    if(e.which == 38) {
+        console.log('You pressed the UP arrow!');
+    }
+    // what was this for again?
+    e.preventDefault();
+});
+
+// Listen for downArrow 
+$(document).on('keydown',function(e) {
+    if(e.which == 40) {
+        console.log('You pressed the DOWN arrow!');
+    }
+    e.preventDefault();
+});
 
 // press ENTER to start game
-$(document).on('keypress',function(e) {
+$(document).on('keydown',function(e) {
     if(e.which == 13) {
-        alert('You pressed enter!');
+        console.log('You pressed enter!');
     }
 });
+
 
 // if 2 players - show pic of game controls for 10 seconds (with skip btn)
 
