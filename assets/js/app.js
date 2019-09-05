@@ -1,8 +1,60 @@
-//PSUEDO CODE TRIVIA GAME
+// PSUEDO CODE TRIVIA GAME
+
+// Create Question Array 
+var questions = [{
+    question: "What was the first full length CGI movie?",
+    answers: ["A Bug's Life", "Monsters Inc.", "Toy Story", "The Lion King"],
+    correctAnswer: "Toy Story",
+    image: "assets/images/toystory.gif"
+  }, {
+    question: "Which of these is NOT a name of one of the Spice Girls?",
+    answers: ["Sporty Spice", "Fred Spice", "Scary Spice", "Posh Spice"],
+    correctAnswer: "Fred Spice",
+    image: "assets/images/spicegirls.gif"
+  }];
+
+
+
+// Create an object to hold all game logic
+var triviaGameObj = {
+    
+    // Game Variables 
+    numberOfPlayers:    0,
+    currentQuestion:    0,
+    playerOneScore:     0,
+    playerTwoScore:     0,
+    counter:            0,
+    multiplayerGame:    false,
+    currentPlayer:      null, 
+    timer:              null,
+
+    // Game Functions
+    countdown: function() {
+        this.counter--;
+        $("#count-down-text").text(this.counter);
+        if (this.counter === 0) {
+            console.log('Time up!');
+            clearInterval(timer); 
+        }
+    },
+
+    
+}
+
+// Event Listeners 
+
 
 // Design start game screens/progression 
 // Choose 1 or 2 players 
+
 // press ENTER to start game
+$(document).on('keypress',function(e) {
+    if(e.which == 13) {
+        alert('You pressed enter!');
+    }
+});
+
+// if 2 players - show pic of game controls for 10 seconds (with skip btn)
 
 // Display Question One Screen
     // make this a function that runs and increments a variable to track each time
@@ -57,7 +109,7 @@
     // Play audio clip of Question being read aloud - have timer start at audio clip end
     // Play sound effects for correct/incorrect picks
     // Create High Score list
-        // Check for high score
+        // Check for high score (check if both players got a high score)
         // Capture player name if gotAHighScore === true; 
         // Update high score array
         // Remove Lowest Score on High Score Array
