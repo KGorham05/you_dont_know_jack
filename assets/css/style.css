@@ -29,6 +29,11 @@ body {
 #game-title {
     font-size: 48px;    
 }
+
 .current-choice {
     border: 2px solid fuchsia;
+}
+
+.hide {
+    display: none !important;
 }

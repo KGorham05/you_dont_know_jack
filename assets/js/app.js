@@ -38,7 +38,10 @@ var triviaGameObj = {
         }
     },
 
-    
+    startGame: function() {
+        // hide the setup-game-screen
+        $("#setup-game-screen").addClass('hide');
+    },
 }
 
 // Event Listeners 
@@ -46,27 +49,28 @@ var triviaGameObj = {
 // Choose 1 or 2 players 
 // Listen for upArrow 
 $(document).on('keydown',function(e) {
+     // what was this for again?
+    e.preventDefault();
+    console.log(e.key);
+    // listen for DOWN arrow
     if(e.which == 38) {
         console.log('You pressed the UP arrow!');
-    }
-    // what was this for again?
-    e.preventDefault();
-});
-
-// Listen for downArrow 
-$(document).on('keydown',function(e) {
-    if(e.which == 40) {
+    } 
+    // listen for UP arrow
+    else if (e.which == 40) {
         console.log('You pressed the DOWN arrow!');
+    } 
+    // listen for ENTER 
+    else if (e.which == 13) {
+        console.log('You pressed enter!');
+        // 
+        triviaGameObj.startGame();
+        
     }
-    e.preventDefault();
+   
 });
 
-// press ENTER to start game
-$(document).on('keydown',function(e) {
-    if(e.which == 13) {
-        console.log('You pressed enter!');
-    }
-});
+
 
 
 // if 2 players - show pic of game controls for 10 seconds (with skip btn)
@@ -129,3 +133,4 @@ $(document).on('keydown',function(e) {
         // Update high score array
         // Remove Lowest Score on High Score Array
         // Loop through high score array and display each score on the DOM list
+    // SCREW your opponents - buzz in and hit the S key to force your opponent to answer the question - 1 per round? 1 round = ? questions?
