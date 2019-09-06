@@ -13,8 +13,6 @@ var questions = [{
     image: "assets/images/spicegirls.gif"
 }];
 
-
-
 // Create an object to hold all game logic
 var triviaGameObj = {
 
@@ -52,16 +50,29 @@ var triviaGameObj = {
         $("#input-player-name").removeClass('hide');
         // listen for ENTER btn
         $(document).on('keydown', function(e) {
+
+            // check if Player one's name has already been set
+            // separate logic using a flag variable to determine which name to save WORKING HERE!!!!
+            
             if (e.which == 13) {
+                // set player One name var = value of input field
                 triviaGameObj.playerOneName = $("#name-input").val();   
+                // if the game is multiplayer, repeat the process
                 if (triviaGameObj.multiplayerGame) {
-                    console.log('the game is multiplayer!')
+                    // empty input field
+                    $("#name-input").val("");
+                    // update instructions to ask for player 2's name
+                    $("#input-name-instructions").text("Player Two, enter your name already!");
+                    
+                    
+
+                }
+                // ELSE: progress to next screen 
+                else {
+                    triviaGameObj.selectNumQuestion();
                 }
             }
-        })
-        // set player One name var = value of input field
-        // if the game is multipilayer, repeat the process
-        // ELSE: progress to next screen
+        });
         
     }
 }
@@ -78,9 +89,7 @@ var changeNumPlayers = function () {
 }
 
 // Event Listeners 
-
 $(document).on('keydown', function (e) {
-    
 
     // if the game hasn't started yet
     if (!triviaGameObj.gameHasStarted) {
@@ -176,3 +185,5 @@ $(document).on('keydown', function (e) {
         // Remove Lowest Score on High Score Array
         // Loop through high score array and display each score on the DOM list
     // SCREW your opponents - buzz in and hit the S key to force your opponent to answer the question - 1 per round? 1 round = ? questions?
+    // if you take TOO long to input your name, have the game give you an insulting name 
+
