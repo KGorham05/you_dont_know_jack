@@ -56,7 +56,7 @@ var triviaGameObj = {
             
             if (e.which == 13) {
                 // set player One name var = value of input field
-                triviaGameObj.playerOneName = $("#name-input").val();   
+                triviaGameObj.playerOneName = $("#name-input").val().trim();   
                 // if the game is multiplayer, repeat the process
                 if (triviaGameObj.multiplayerGame) {
                     // empty input field
