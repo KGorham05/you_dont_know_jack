@@ -6,68 +6,110 @@ var questions = [{
     answers: ["A Bug's Life", "Monsters Inc.", "Toy Story", "The Lion King"],
     correctAnswer: "Toy Story",
     image: "assets/images/toystory.gif"
-  }, {
+}, {
     question: "Which of these is NOT a name of one of the Spice Girls?",
     answers: ["Sporty Spice", "Fred Spice", "Scary Spice", "Posh Spice"],
     correctAnswer: "Fred Spice",
     image: "assets/images/spicegirls.gif"
-  }];
+}];
 
 
 
 // Create an object to hold all game logic
 var triviaGameObj = {
-    
+
     // Game Variables 
-    numberOfPlayers:    0,
-    currentQuestion:    0,
-    playerOneScore:     0,
-    playerTwoScore:     0,
-    counter:            0,
-    multiplayerGame:    false,
-    currentPlayer:      null, 
-    timer:              null,
+    currentQuestion: 0,
+    playerOneScore: 0,
+    playerTwoScore: 0,
+    playerOneName: "starting string",
+    playerTwoName: "",
+    counter: 0,
+    multiplayerGame: false,
+    gameHasStarted: false,
+    currentPlayer: null,
+    timer: null,
 
     // Game Functions
-    countdown: function() {
+    countdown: function () {
         this.counter--;
         $("#count-down-text").text(this.counter);
         if (this.counter === 0) {
             console.log('Time up!');
-            clearInterval(timer); 
+            clearInterval(timer);
         }
     },
 
-    startGame: function() {
+    startGame: function () {
+        console.log('Multiplayer = ' + this.multiplayerGame)
         // hide the setup-game-screen
         $("#setup-game-screen").addClass('hide');
+        this.capturePlayerNames();
     },
+
+    capturePlayerNames: function() {
+        // reveal this screen
+        $("#input-player-name").removeClass('hide');
+        // listen for ENTER btn
+        $(document).on('keydown', function(e) {
+            if (e.which == 13) {
+                triviaGameObj.playerOneName = $("#name-input").val();   
+                if (triviaGameObj.multiplayerGame) {
+                    console.log('the game is multiplayer!')
+                }
+            }
+        })
+        // set player One name var = value of input field
+        // if the game is multipilayer, repeat the process
+        // ELSE: progress to next screen
+        
+    }
+}
+
+//This function moves the selector from 1 or 2 players and back. 
+var changeNumPlayers = function () {
+    if ($("#select-one-player").hasClass('current-choice')) {
+        $("#select-one-player").removeClass('current-choice');
+        $("#select-two-player").addClass('current-choice');
+    } else {
+        $("#select-two-player").removeClass('current-choice');
+        $("#select-one-player").addClass('current-choice');
+    }
 }
 
 // Event Listeners 
 
-// Choose 1 or 2 players 
-// Listen for upArrow 
-$(document).on('keydown',function(e) {
-     // what was this for again?
-    e.preventDefault();
-    console.log(e.key);
-    // listen for DOWN arrow
-    if(e.which == 38) {
-        console.log('You pressed the UP arrow!');
-    } 
-    // listen for UP arrow
-    else if (e.which == 40) {
-        console.log('You pressed the DOWN arrow!');
-    } 
-    // listen for ENTER 
-    else if (e.which == 13) {
-        console.log('You pressed enter!');
-        // 
-        triviaGameObj.startGame();
-        
+$(document).on('keydown', function (e) {
+    
+
+    // if the game hasn't started yet
+    if (!triviaGameObj.gameHasStarted) {
+        // listen for DOWN arrow
+        if (e.which == 38) {
+            console.log('You pressed the UP arrow!');
+            // if one-player has class current-choice, remove class current choice and add it to the select-two-player element
+            changeNumPlayers();
+        }
+        // listen for UP arrow
+        else if (e.which == 40) {
+            console.log('You pressed the DOWN arrow!');
+            changeNumPlayers();
+        }
+        // listen for ENTER 
+        else if (e.which == 13) {
+            console.log('You pressed enter!');
+            triviaGameObj.gameHasStarted = true;
+            if ($("#select-one-player").hasClass('current-choice')) {
+                triviaGameObj.startGame();
+            } else {
+                triviaGameObj.multiplayerGame = true;
+                console.log(triviaGameObj.multiplayerGame);
+                console.log("You started a multiplayer game!")
+                triviaGameObj.startGame();
+            }
+        }
     }
-   
+
 });
 
 
@@ -121,7 +163,7 @@ $(document).on('keydown',function(e) {
     // if there is 1 player
         // show final score
         // generate restart game button
-        
+
 
 // ***Stretch Goals***
 
