@@ -63,6 +63,10 @@ body {
     text-align: center;
 }
 
-/* #select-game-length {
+#select-game-length {
+    font-size: 24px;
+}
 
-} */
+#seven {
+    padding: 2px 2px 2px 2px;
+}
