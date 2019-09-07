@@ -45,35 +45,40 @@ var triviaGameObj = {
         this.capturePlayerNames();
     },
 
-    capturePlayerNames: function() {
+    capturePlayerNames: function () {
         // reveal this screen
         $("#input-player-name").removeClass('hide');
         // listen for ENTER btn
-        $(document).on('keydown', function(e) {
+        $(document).on('keydown', function (e) {
 
             // check if Player one's name has already been set
             // separate logic using a flag variable to determine which name to save WORKING HERE!!!!
-            
-            if (e.which == 13) {
-                // set player One name var = value of input field
-                triviaGameObj.playerOneName = $("#name-input").val().trim();   
-                // if the game is multiplayer, repeat the process
-                if (triviaGameObj.multiplayerGame) {
-                    // empty input field
-                    $("#name-input").val("");
-                    // update instructions to ask for player 2's name
-                    $("#input-name-instructions").text("Player Two, enter your name already!");
-                    
-                    
 
+            if (e.which == 13) {
+
+                // check for empty input
+                if ($("#name-input").val().trim().length < 1) {
+                    alert('You must input a name!');
+                    return false;
+                } else {
+                    // set player One name var = value of input field
+                    triviaGameObj.playerOneName = $("#name-input").val().trim();
+                    // if the game is multiplayer, repeat the process
+                    if (triviaGameObj.multiplayerGame) {
+                        // empty input field
+                        $("#name-input").val("");
+                        // update instructions to ask for player 2's name
+                        $("#input-name-instructions").text("Player Two, enter your name already!");
+                    }
+                    // ELSE: progress to next screen 
+                    else {
+                        triviaGameObj.selectGameLength();
+                    }
                 }
-                // ELSE: progress to next screen 
-                else {
-                    triviaGameObj.selectNumQuestion();
-                }
+
             }
         });
-        
+
     }
 }
 
