@@ -52,11 +52,7 @@ var triviaGameObj = {
         // listen for ENTER btn
         $(document).on('keydown', function (e) {
 
-            // check if Player one's name has already been set
-            // separate logic using a flag variable to determine which name to save WORKING HERE!!!!
-
             if (e.which == 13) {
-
                 // check for empty input
                 if ($("#name-input").val().trim().length < 1) {
                     alert('You must input a name!');
@@ -66,6 +62,8 @@ var triviaGameObj = {
                 else if (!triviaGameObj.playerOneNameColleted) {
                     // set player One name var = value of input field
                     triviaGameObj.playerOneName = $("#name-input").val().trim();
+                    // use flag variable for if/else logic to function correctly
+                    triviaGameObj.playerOneNameColleted = true;
                     // if the game is multiplayer, repeat the process
                     if (triviaGameObj.multiplayerGame) {
                         // empty input field
@@ -75,17 +73,26 @@ var triviaGameObj = {
                     }
                     // ELSE: progress to next screen 
                     else {
+                        // disable the event listener
+                        $(document).off('keydown');
                         triviaGameObj.selectGameLength();
                     }
                 // if we already have
                 } else {
                     triviaGameObj.playerTwoName = $("#name-input").val().trim();
+                    // disable the event listener
+                    $(document).off('keydown');
                     triviaGameObj.selectGameLength();
                 }
             }
         });
-
     },
+
+    selectGameLength: function() {
+        $("#input-player-name").addClass('hide');
+        $("#select-game-length").removeClass('hide'); 
+        // devise a way (perhaps using current-choice html/css class and an event listener) to select 7 or 21 questions. 
+    }
 
     
 }
@@ -103,30 +110,26 @@ var changeNumPlayers = function () {
 
 // Event Listeners 
 $(document).on('keydown', function (e) {
-
     // if the game hasn't started yet
     if (!triviaGameObj.gameHasStarted) {
         // listen for DOWN arrow
         if (e.which == 38) {
-            console.log('You pressed the UP arrow!');
             // if one-player has class current-choice, remove class current choice and add it to the select-two-player element
             changeNumPlayers();
         }
         // listen for UP arrow
         else if (e.which == 40) {
-            console.log('You pressed the DOWN arrow!');
             changeNumPlayers();
         }
         // listen for ENTER 
         else if (e.which == 13) {
-            console.log('You pressed enter!');
             triviaGameObj.gameHasStarted = true;
             if ($("#select-one-player").hasClass('current-choice')) {
+                $(document).off('keydown');
                 triviaGameObj.startGame();
             } else {
                 triviaGameObj.multiplayerGame = true;
-                console.log(triviaGameObj.multiplayerGame);
-                console.log("You started a multiplayer game!")
+                $(document).off('keydown');
                 triviaGameObj.startGame();
             }
         }

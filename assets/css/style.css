@@ -7,17 +7,26 @@ body {
     display: none !important;
 }
 
+.full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.flex {
+    display: flex;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
 #main-bg {
-  background: tomato;  
+    background: tomato;  
 }
 
 #setup-game-screen {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 #setup-game-screen p {
@@ -42,12 +51,7 @@ body {
 }
 
 #input-player-name {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
 }
 
@@ -58,3 +62,7 @@ body {
     font-size: 24px;
     text-align: center;
 }
+
+/* #select-game-length {
+
+} */

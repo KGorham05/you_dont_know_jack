@@ -15,22 +15,29 @@
 
 <body>
 
-    <div id="main-bg">
+    <div id="main-bg" class="full-screen">
 
-        <div id="setup-game-screen">
+        <div id="setup-game-screen" class="full-screen flex center">
             <h1 id="game-title">You Know Nothing John Snow!</h1>
             <p id="select-one-player" class="current-choice">One Player</p>
             <p id="select-two-player">Two Players</p>
             <p>Press ENTER to start the game!</p>
         </div>
 
-        <div id="input-player-name" class="hide">
+        <div id="input-player-name" class="hide full-screen flex center">
             <form action="#">
                 <h1 id="input-name-instructions">Player One, enter your name!</h1>
                 <input type="text" id="name-input">
             </form>
         </div>
-        
+
+        <div id="select-game-length" class="hide full-screen flex center">
+            <h1>Is this a <span id="seven" class="current-choice">7</span> or <span id="twenty-one">21</span> question game?</h1>
+        </div>
+
+
+
+    <!-- End of #main-bg div -->
     </div>
 
 
