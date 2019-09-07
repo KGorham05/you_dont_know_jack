@@ -23,6 +23,7 @@ var triviaGameObj = {
     playerOneName: "starting string",
     playerTwoName: "",
     counter: 0,
+    playerOneNameColleted: false,
     multiplayerGame: false,
     gameHasStarted: false,
     currentPlayer: null,
@@ -60,7 +61,9 @@ var triviaGameObj = {
                 if ($("#name-input").val().trim().length < 1) {
                     alert('You must input a name!');
                     return false;
-                } else {
+                } 
+                // if we haven't already stored player 1's name
+                else if (!triviaGameObj.playerOneNameColleted) {
                     // set player One name var = value of input field
                     triviaGameObj.playerOneName = $("#name-input").val().trim();
                     // if the game is multiplayer, repeat the process
@@ -74,12 +77,17 @@ var triviaGameObj = {
                     else {
                         triviaGameObj.selectGameLength();
                     }
+                // if we already have
+                } else {
+                    triviaGameObj.playerTwoName = $("#name-input").val().trim();
+                    triviaGameObj.selectGameLength();
                 }
-
             }
         });
 
-    }
+    },
+
+    
 }
 
 //This function moves the selector from 1 or 2 players and back. 
@@ -191,4 +199,5 @@ $(document).on('keydown', function (e) {
         // Loop through high score array and display each score on the DOM list
     // SCREW your opponents - buzz in and hit the S key to force your opponent to answer the question - 1 per round? 1 round = ? questions?
     // if you take TOO long to input your name, have the game give you an insulting name 
+    // change any ALERTs to a modal
 
