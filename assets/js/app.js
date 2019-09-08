@@ -89,9 +89,32 @@ var triviaGameObj = {
     },
 
     selectGameLength: function() {
+        // hide previous screen, show this screen        
         $("#input-player-name").addClass('hide');
         $("#select-game-length").removeClass('hide'); 
-        // devise a way (perhaps using current-choice html/css class and an event listener) to select 7 or 21 questions. 
+        // devise a way (perhaps using current-choice html/css class and an event listener) to select 7 or 21 questions.
+        
+        $(document).on('keydown', function(e) {
+            
+            if (e.which >= 37 && e.which <= 40) {
+                if ($("#seven").hasClass('current-choice')) {
+                    $("#seven").removeClass('current-choice');
+                    $("#twenty-one").addClass('current-choice');
+                } else {
+                    $("#twenty-one").removeClass('current-choice');
+                    $("#seven").addClass('current-choice');
+                }
+            }
+            else if (e.which == 13) {
+                // turn off event listener
+                $(document).off('keydown');
+                //begin the game
+                // go to choose category screen
+                alert('Chose a category is next!');
+            }
+        })
+        
+        
     }
 
     
@@ -204,3 +227,4 @@ $(document).on('keydown', function (e) {
     // if you take TOO long to input your name, have the game give you an insulting name 
     // change any ALERTs to a modal
 
+    // Use mouse click events for menu options as well as keyboard
