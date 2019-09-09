@@ -1,5 +1,7 @@
 // PSUEDO CODE TRIVIA GAME
 
+
+// TO DO - combine category and question array into 1 array of objects 
 // Create Question Array 
 var questions = [{
     question: "What was the first full length CGI movie?",
@@ -12,6 +14,8 @@ var questions = [{
     correctAnswer: "Fred Spice",
     image: "assets/images/spicegirls.gif"
 }];
+
+// need 63 categories to not have any repeats in a 21 q game
 
 var categories = ["Category A", "Category B", "Category C", "Category D", "Category E", "Category F", "Category G"];
 
@@ -35,6 +39,8 @@ var triviaGameObj = {
     gameHasStarted: false,
     currentPlayer: null,
     timer: null,
+    workingArray: [],
+    usedCategories: [],
 
     // Game Functions
     countdown: function () {
@@ -146,14 +152,25 @@ var triviaGameObj = {
     pickCategory: function() {
         // hide current ? screen
         $('#current-question-screen').addClass('hide');
-        // randomly pick a category from the category array
-        this.cOne   = categories[Math.floor(Math.random() * (categories.length))];
-        this.cTwo   = categories[Math.floor(Math.random() * (categories.length))];
-        this.cThree = categories[Math.floor(Math.random() * (categories.length))];
-        // if any of the categories are the same, pick a different category. 
+
+        // Rather then randomly select each array item - shuffle the array and make a copy of it randomized
+        // pop elements off the end of the array each time
+        // select the first or last 3 elements of the array each time 
+
+
+
+        // generate a random num to be used as the index for setting a category
+        let randomArrayIndex = Math.floor(Math.random() * (categories.length));
+        // use random num to set cOne
+        this.cOne   = categories[randomArrayIndex];
+        // add that object to the "used" array
+        this.usedCategories = categories.splice(randomArrayIndex, 1);
+        // use that random num to splice that item from the array
+        categories.splice(randomArrayIndex, 1);
+        
         // or, remove the element from the array, push it into a different array - add them back during game reset
 
-
+        // show Pick a Category screen
         // allow user to select a category by pressing 1, 2, or 3
         // set current category 
     },
