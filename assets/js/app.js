@@ -13,16 +13,23 @@ var questions = [{
     image: "assets/images/spicegirls.gif"
 }];
 
+var categories = ["Category A", "Category B", "Category C", "Category D", "Category E", "Category F", "Category G"];
+
 // Create an object to hold all game logic
 var triviaGameObj = {
 
     // Game Variables 
-    currentQuestion: 0,
+    currentQuestion: 1,
     playerOneScore: 0,
     playerTwoScore: 0,
-    playerOneName: "starting string",
-    playerTwoName: "",
     counter: 0,
+    numQuestions: 0,
+    playerOneName: "",
+    playerTwoName: "",
+    cOne: "",
+    cTwo: "",
+    cThree: "",
+    chosenCategory: "",
     playerOneNameColleted: false,
     multiplayerGame: false,
     gameHasStarted: false,
@@ -108,17 +115,50 @@ var triviaGameObj = {
             else if (e.which == 13) {
                 // turn off event listener
                 $(document).off('keydown');
-                //begin the game
+                // set game length to whichever number is selected
+                if ($("#seven").hasClass('current-choice')) {
+                    triviaGameObj.numQuestions = 7;
+                } else {
+                    triviaGameObj.numQuestions = 21;
+                };
+                // hide this screen
+                $("#select-game-length").addClass('hide');
                 // go to choose category screen
-                alert('Chose a category is next!');
+                triviaGameObj.showCurrentQuestionScreen();
             }
-        })
-        
-        
-    }
+        });
+          
+    },
 
-    
-}
+    showCurrentQuestionScreen: function() {
+        // display this screen
+        $("#current-question-screen").removeClass('hide');
+        // set the text = the currentQuestion
+        $("#question-counter").text(this.currentQuestion);
+        // increment the current question variable
+        this.currentQuestion++;
+        // wait 4 seconds, then run pickCategory function.
+        setTimeout(this.pickCategory, 1000 * 4);
+
+    },
+
+    // separate this logic into a function that generates random categories and sets them to the cOne, cTwo, and cThree variables
+    pickCategory: function() {
+        // hide current ? screen
+        $('#current-question-screen').addClass('hide');
+        // randomly pick a category from the category array
+        this.cOne   = categories[Math.floor(Math.random() * (categories.length))];
+        this.cTwo   = categories[Math.floor(Math.random() * (categories.length))];
+        this.cThree = categories[Math.floor(Math.random() * (categories.length))];
+        // if any of the categories are the same, pick a different category. 
+        // or, remove the element from the array, push it into a different array - add them back during game reset
+
+
+        // allow user to select a category by pressing 1, 2, or 3
+        // set current category 
+    },
+
+};
 
 //This function moves the selector from 1 or 2 players and back. 
 var changeNumPlayers = function () {
@@ -129,7 +169,7 @@ var changeNumPlayers = function () {
         $("#select-two-player").removeClass('current-choice');
         $("#select-one-player").addClass('current-choice');
     }
-}
+};
 
 // Event Listeners 
 $(document).on('keydown', function (e) {
