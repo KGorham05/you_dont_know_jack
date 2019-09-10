@@ -1,23 +1,26 @@
 // PSUEDO CODE TRIVIA GAME
 
 
-// TO DO - combine category and question array into 1 array of objects 
-// Create Question Array 
+
+// Create Question Array
+// Need 63 categories to not have any repeats in a 21 q game
 var questions = [{
-    question: "What was the first full length CGI movie?",
-    answers: ["A Bug's Life", "Monsters Inc.", "Toy Story", "The Lion King"],
-    correctAnswer: "Toy Story",
-    image: "assets/images/toystory.gif"
+    category: "sports",
+    question: "Who wore #33 for the Celtics?",
+    answers: ["I did", "You did", "Bill Russell", "Larry Bird"],
+    correctAnswer: "Larry Bird"
 }, {
-    question: "Which of these is NOT a name of one of the Spice Girls?",
-    answers: ["Sporty Spice", "Fred Spice", "Scary Spice", "Posh Spice"],
-    correctAnswer: "Fred Spice",
-    image: "assets/images/spicegirls.gif"
-}];
-
-// need 63 categories to not have any repeats in a 21 q game
-
-var categories = ["Category A", "Category B", "Category C", "Category D", "Category E", "Category F", "Category G"];
+    category: "travel",
+    question: "Where in the world is Carmen San Diego?",
+    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
+    correctAnswer: "San Diego" 
+}, {
+    category: "Math",
+    question: "What is the airspeed velocity of an unladen swallow?",
+    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
+    correctAnswer: "African or European?" 
+}
+]
 
 // Create an object to hold all game logic
 var triviaGameObj = {
@@ -39,8 +42,8 @@ var triviaGameObj = {
     gameHasStarted: false,
     currentPlayer: null,
     timer: null,
-    workingArray: [],
-    usedCategories: [],
+    copyOfQuesArray: [],
+
 
     // Game Functions
     countdown: function () {
@@ -70,7 +73,7 @@ var triviaGameObj = {
                 if ($("#name-input").val().trim().length < 1) {
                     alert('You must input a name!');
                     return false;
-                } 
+                }
                 // if we haven't already stored player 1's name
                 else if (!triviaGameObj.playerOneNameColleted) {
                     // set player One name var = value of input field
@@ -90,7 +93,7 @@ var triviaGameObj = {
                         $(document).off('keydown');
                         triviaGameObj.selectGameLength();
                     }
-                // if we already have
+                    // if we already have
                 } else {
                     triviaGameObj.playerTwoName = $("#name-input").val().trim();
                     // disable the event listener
@@ -101,14 +104,14 @@ var triviaGameObj = {
         });
     },
 
-    selectGameLength: function() {
+    selectGameLength: function () {
         // hide previous screen, show this screen        
         $("#input-player-name").addClass('hide');
-        $("#select-game-length").removeClass('hide'); 
+        $("#select-game-length").removeClass('hide');
         // devise a way (perhaps using current-choice html/css class and an event listener) to select 7 or 21 questions.
-        
-        $(document).on('keydown', function(e) {
-            
+
+        $(document).on('keydown', function (e) {
+
             if (e.which >= 37 && e.which <= 40) {
                 if ($("#seven").hasClass('current-choice')) {
                     $("#seven").removeClass('current-choice');
@@ -133,10 +136,10 @@ var triviaGameObj = {
                 triviaGameObj.showCurrentQuestionScreen();
             }
         });
-          
+
     },
 
-    showCurrentQuestionScreen: function() {
+    showCurrentQuestionScreen: function () {
         // display this screen
         $("#current-question-screen").removeClass('hide');
         // set the text = the currentQuestion
@@ -148,26 +151,49 @@ var triviaGameObj = {
 
     },
 
+    shuffleArray: function (arr) {
+
+        let numIterations = arr.length - 1;
+        for (let i = numIterations; i > 0; i--) {
+            const j = Math.floor(Math.random() * i)
+            const temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+        return arr;
+    },
+
     // separate this logic into a function that generates random categories and sets them to the cOne, cTwo, and cThree variables
-    pickCategory: function() {
+    pickCategory: function () {
         // hide current ? screen
         $('#current-question-screen').addClass('hide');
 
-        // Rather then randomly select each array item - shuffle the array and make a copy of it randomized
-        // pop elements off the end of the array each time
-        // select the first or last 3 elements of the array each time 
+        // duplicate the original array, save it as a new variable
+        this.copyOfQuesArray = [...questions];
+        // shuffle the new array
+        this.copyOfQuesArray = triviaGameObj.shuffleArray(this.copyOfQuesArray);
 
+        console.log('randomized array: ' + this.copyOfQuesArray);
 
+        // set the last 3 elements of the array to cOne, cTwo, and cThree 
+        this.cOne = this.copyOfQuesArray[(this.copyOfQuesArray.length - 1)].category;
+        this.cTwo = this.copyOfQuesArray[(this.copyOfQuesArray.length - 2)].category;
+        this.cThree = this.copyOfQuesArray[(this.copyOfQuesArray.length - 3)].category;
+        console.log(this.cOne);
+        console.log(this.cTwo);
+        console.log(this.cThree);
+        // pop elements off the end of the array each time (Wait to do this until category is chosen, correct answer is stored in a variable, answers are shown on the screen)
+        // this.copyOfQuesArray.pop();
+        // this.copyOfQuesArray.pop();
+        // this.copyOfQuesArray.pop();
+        // console.log('array after popping: ' + this.copyOfQuesArray);
 
         // generate a random num to be used as the index for setting a category
-        let randomArrayIndex = Math.floor(Math.random() * (categories.length));
         // use random num to set cOne
-        this.cOne   = categories[randomArrayIndex];
         // add that object to the "used" array
-        this.usedCategories = categories.splice(randomArrayIndex, 1);
         // use that random num to splice that item from the array
-        categories.splice(randomArrayIndex, 1);
-        
+
+
         // or, remove the element from the array, push it into a different array - add them back during game reset
 
         // show Pick a Category screen
