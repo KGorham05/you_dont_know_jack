@@ -21,12 +21,12 @@ body {
     justify-content: center;
 }
 
-#main-bg {
-    background: tomato;  
+.f-column {
+    flex-direction: column;
 }
 
-#setup-game-screen {
-    flex-direction: column;
+#main-bg {
+    background: tomato;  
 }
 
 #setup-game-screen p {
@@ -51,7 +51,6 @@ body {
 }
 
 #input-player-name {
-    flex-direction: column;
     text-align: center;
 }
 

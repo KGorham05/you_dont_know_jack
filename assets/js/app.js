@@ -167,21 +167,23 @@ var triviaGameObj = {
     pickCategory: function () {
         // hide current ? screen
         $('#current-question-screen').addClass('hide');
+        // show this screen
+        $('#categories-screen').removeClass('hide');
 
         // duplicate the original array, save it as a new variable
         this.copyOfQuesArray = [...questions];
         // shuffle the new array
         this.copyOfQuesArray = triviaGameObj.shuffleArray(this.copyOfQuesArray);
 
-        console.log('randomized array: ' + this.copyOfQuesArray);
-
         // set the last 3 elements of the array to cOne, cTwo, and cThree 
         this.cOne = this.copyOfQuesArray[(this.copyOfQuesArray.length - 1)].category;
         this.cTwo = this.copyOfQuesArray[(this.copyOfQuesArray.length - 2)].category;
         this.cThree = this.copyOfQuesArray[(this.copyOfQuesArray.length - 3)].category;
-        console.log(this.cOne);
-        console.log(this.cTwo);
-        console.log(this.cThree);
+        
+        // display the random categories on the screen
+        $('#category-one').text('1. ' + this.cOne);
+        $('#category-two').text(`2. ${this.cTwo}`);
+        $('#category-three').text(`3. ${this.cThree}`);
         // pop elements off the end of the array each time (Wait to do this until category is chosen, correct answer is stored in a variable, answers are shown on the screen)
         // this.copyOfQuesArray.pop();
         // this.copyOfQuesArray.pop();
@@ -311,3 +313,5 @@ $(document).on('keydown', function (e) {
     // change any ALERTs to a modal
 
     // Use mouse click events for menu options as well as keyboard
+    // Make sure all quotes are singles or doubles - be consistent!
+    // Redo variable names to keep to a convention in HTML, CSS, and JS

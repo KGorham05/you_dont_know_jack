@@ -17,14 +17,14 @@
 
     <div id="main-bg" class="full-screen">
 
-        <div id="setup-game-screen" class="full-screen flex center">
+        <div id="setup-game-screen" class="full-screen flex center f-column">
             <h1 id="game-title">You Know Nothing John Snow!</h1>
             <p id="select-one-player" class="current-choice">One Player</p>
             <p id="select-two-player">Two Players</p>
             <p>Press ENTER to start the game!</p>
         </div>
 
-        <div id="input-player-name" class="hide full-screen flex center">
+        <div id="input-player-name" class="hide full-screen flex center f-column">
             <form action="#">
                 <h1 id="input-name-instructions">Player One, enter your name!</h1>
                 <input type="text" id="name-input">
@@ -39,6 +39,12 @@
             <h1>Question <span id="question-counter"></span></h1>
         </div>
 
+        <div id="categories-screen" class="hide full-screen flex center f-column">
+            <h1><span id="current-player"></span> Choose a Category</h1>
+            <p id="category-one"></p>
+            <p id="category-two"></p>
+            <p id="category-three"></p>
+        </div>
 
     </div>
 
