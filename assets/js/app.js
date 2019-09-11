@@ -8,22 +8,26 @@ var questions = [{
     category: "sports",
     question: "Who wore #33 for the Celtics?",
     answers: ["I did", "You did", "Bill Russell", "Larry Bird"],
-    correctAnswer: "Larry Bird"
+    correctAnswer: "Larry Bird",
+    value: 1000,
 }, {
     category: "travel",
     question: "Where in the world is Carmen San Diego?",
     answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
-    correctAnswer: "San Diego" 
+    correctAnswer: "San Diego",
+    value: 2000, 
 }, {
     category: "Math",
     question: "What is the airspeed velocity of an unladen swallow?",
     answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?" 
+    correctAnswer: "African or European?",
+    value: 3000,
 }, {
     category: "Fiction",
     question: "What magical item is at the core of Harry Potter's wand?",
     answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
-    correctAnswer: "Phoenix Feather" 
+    correctAnswer: "Phoenix Feather",
+    value: 4000,
 }
 ]
 
@@ -31,7 +35,7 @@ var questions = [{
 var triviaGameObj = {
 
     // Game Variables 
-    currentQuestion: 1,
+    currentQuesCounter: 1,
     playerOneScore: 0,
     playerTwoScore: 0,
     counter: 0,
@@ -42,6 +46,13 @@ var triviaGameObj = {
     cTwo: "",
     cThree: "",
     chosenCategory: "",
+
+    curQuestionText: "",
+    curAnswers: [],
+    curCorrectAnswer: "",
+    curQuestionValue: 0,
+
+
     playerOneNameColleted: false,
     multiplayerGame: false,
     gameHasStarted: false,
@@ -148,11 +159,11 @@ var triviaGameObj = {
         // display this screen
         $("#current-question-screen").removeClass('hide');
         // set the text = the currentQuestion
-        $("#question-counter").text(this.currentQuestion);
+        $("#question-counter").text(this.currentQuesCounter);
         // increment the current question variable
-        this.currentQuestion++;
+        this.currentQuesCounter++;
         // wait 4 seconds, then run genCategories function.
-        setTimeout(this.genCategories, 1000 * 4);
+        setTimeout(this.genCategories, 1000);
 
     },
 
@@ -175,36 +186,38 @@ var triviaGameObj = {
         $('#categories-screen').removeClass('hide');
 
         // duplicate the original array, save it as a new variable
-        this.copyOfQuesArray = [...questions];
+        triviaGameObj.copyOfQuesArray = [...questions];
         // shuffle the new array
-        this.copyOfQuesArray = triviaGameObj.shuffleArray(this.copyOfQuesArray);
-
-        // set the last 3 elements of the array to cOne, cTwo, and cThree 
-        this.cOne   = this.copyOfQuesArray[(this.copyOfQuesArray.length - 1)].category;
-        this.cTwo   = this.copyOfQuesArray[(this.copyOfQuesArray.length - 2)].category;
-        this.cThree = this.copyOfQuesArray[(this.copyOfQuesArray.length - 3)].category;
-
+        triviaGameObj.copyOfQuesArray = triviaGameObj.shuffleArray(triviaGameObj.copyOfQuesArray);
         // use a loop to create 3 variables to hold the category data
-        for (var i = 1; i < 4; i++) {
+        for (var i = 0; i < 3; i++) {
             
             // create a paragraph element, set the value = i, 
             var pEle = $('<p>').attr('value', i);
             // give it a css target 
             pEle.attr('class', 'cat-text');
             // set the text = the last element of the random array
-            pEle.text(`${i}. ${this.copyOfQuesArray[(this.copyOfQuesArray.length - 1)].category}`);
+            pEle.text(`${i + 1}. ${triviaGameObj.copyOfQuesArray[i].category}`);
             // append it to the page
             pEle.appendTo('#categories-display');
-            // pop the displayed element from the array 
-            this.copyOfQuesArray.pop();
-
-        };
+              
+        }; 
 
 
-        console.log('array after loop: ' + this.copyOfQuesArray);
+        // select a category screen - could make it's own function
+        // listen for the user to press 1, 2, or 3
+        $(document).on('keydown', function(e) {
+            if (e.key == 1 || e.key == 2 || e.key == 3) {
 
-        // allow user to select a category by pressing 1, 2, or 3
-        // set current category 
+                // based on which question number is pressed, save the relevant data to current game variables
+                curQuestionText  = triviaGameObj.copyOfQuesArray[(e.key - 1)].question;
+                curAnswers       = triviaGameObj.copyOfQuesArray[(e.key - 1)].answers;
+                curCorrectAnswer = triviaGameObj.copyOfQuesArray[(e.key - 1)].correctAnswer;
+                curQuestionValue = triviaGameObj.copyOfQuesArray[(e.key - 1)].value;
+                
+            }
+        })
+        
     },
 
 };
@@ -236,10 +249,12 @@ $(document).on('keydown', function (e) {
         // listen for ENTER 
         else if (e.which == 13) {
             triviaGameObj.gameHasStarted = true;
+            // if one player game is selected
             if ($("#select-one-player").hasClass('current-choice')) {
                 $(document).off('keydown');
                 triviaGameObj.startGame();
             } else {
+                // if multiplayer game is selected
                 triviaGameObj.multiplayerGame = true;
                 $(document).off('keydown');
                 triviaGameObj.startGame();
@@ -254,11 +269,8 @@ $(document).on('keydown', function (e) {
 
 // if 2 players - show pic of game controls for 10 seconds (with skip btn)
 
-// Display Question One Screen
-    // make this a function that runs and increments a variable to track each time
 // Players (alternating) Chose 1 of 3 categories randomly selected from an array 
-// Display a question from that category 
-// Check to see that hasn't been guessed
+// Display the question from that category 
 // Display 4 answers
 // Display Cash value of correct guess 
 // Set question timer, display countdown
@@ -319,3 +331,5 @@ $(document).on('keydown', function (e) {
     // Use mouse click events for menu options as well as keyboard
     // Make sure all quotes are singles or doubles - be consistent!
     // Redo variable names to keep to a convention in HTML, CSS, and JS
+    // pick a category BEFORE we show the Question X screen
+
