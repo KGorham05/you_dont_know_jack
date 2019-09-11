@@ -149,17 +149,17 @@ var triviaGameObj = {
                 // hide this screen
                 $("#select-game-length").addClass('hide');
                 // go to choose category screen
-                triviaGameObj.showCurrentQuestionScreen();
+                triviaGameObj.showQuestionCounterScreen();
             }
         });
 
     },
 
-    showCurrentQuestionScreen: function () {
+    showQuestionCounterScreen: function () {
         // display this screen
         $("#current-question-screen").removeClass('hide');
         // set the text = the currentQuestion
-        $("#question-counter").text(this.currentQuesCounter);
+        $(".question-counter").text(this.currentQuesCounter);
         // increment the current question variable
         this.currentQuesCounter++;
         // wait 4 seconds, then run genCategories function.
@@ -215,11 +215,28 @@ var triviaGameObj = {
                 curCorrectAnswer = triviaGameObj.copyOfQuesArray[(e.key - 1)].correctAnswer;
                 curQuestionValue = triviaGameObj.copyOfQuesArray[(e.key - 1)].value;
                 
+                // remove the first 3 items of the array so they will not be reused
+                triviaGameObj.copyOfQuesArray.splice(0, 3);
+                
+                // remove this event listener
+                $(document).off('keydown');
+
+                // hide this screen
+                $('#categories-screen').addClass('hide');
+                // run display Question screen
+                triviaGameObj.displayQuestion();
             }
         })
         
     },
 
+    displayQuestion: function () {
+        // show this screen
+        $("#question-display").removeClass('hide');
+        
+    },
+
+// end of game obj
 };
 
 //This function moves the selector from 1 or 2 players and back. 
