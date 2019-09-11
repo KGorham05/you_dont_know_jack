@@ -19,6 +19,11 @@ var questions = [{
     question: "What is the airspeed velocity of an unladen swallow?",
     answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
     correctAnswer: "African or European?" 
+}, {
+    category: "Fiction",
+    question: "What magical item is at the core of Harry Potter's wand?",
+    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
+    correctAnswer: "Phoenix Feather" 
 }
 ]
 
@@ -146,8 +151,8 @@ var triviaGameObj = {
         $("#question-counter").text(this.currentQuestion);
         // increment the current question variable
         this.currentQuestion++;
-        // wait 4 seconds, then run pickCategory function.
-        setTimeout(this.pickCategory, 1000 * 4);
+        // wait 4 seconds, then run genCategories function.
+        setTimeout(this.genCategories, 1000 * 4);
 
     },
 
@@ -163,8 +168,7 @@ var triviaGameObj = {
         return arr;
     },
 
-    // separate this logic into a function that generates random categories and sets them to the cOne, cTwo, and cThree variables
-    pickCategory: function () {
+    genCategories: function () {
         // hide current ? screen
         $('#current-question-screen').addClass('hide');
         // show this screen
@@ -176,29 +180,29 @@ var triviaGameObj = {
         this.copyOfQuesArray = triviaGameObj.shuffleArray(this.copyOfQuesArray);
 
         // set the last 3 elements of the array to cOne, cTwo, and cThree 
-        this.cOne = this.copyOfQuesArray[(this.copyOfQuesArray.length - 1)].category;
-        this.cTwo = this.copyOfQuesArray[(this.copyOfQuesArray.length - 2)].category;
+        this.cOne   = this.copyOfQuesArray[(this.copyOfQuesArray.length - 1)].category;
+        this.cTwo   = this.copyOfQuesArray[(this.copyOfQuesArray.length - 2)].category;
         this.cThree = this.copyOfQuesArray[(this.copyOfQuesArray.length - 3)].category;
-        
-        // display the random categories on the screen
-        $('#category-one').text('1. ' + this.cOne);
-        $('#category-two').text(`2. ${this.cTwo}`);
-        $('#category-three').text(`3. ${this.cThree}`);
-        // pop elements off the end of the array each time (Wait to do this until category is chosen, correct answer is stored in a variable, answers are shown on the screen)
-        // this.copyOfQuesArray.pop();
-        // this.copyOfQuesArray.pop();
-        // this.copyOfQuesArray.pop();
-        // console.log('array after popping: ' + this.copyOfQuesArray);
 
-        // generate a random num to be used as the index for setting a category
-        // use random num to set cOne
-        // add that object to the "used" array
-        // use that random num to splice that item from the array
+        // use a loop to create 3 variables to hold the category data
+        for (var i = 1; i < 4; i++) {
+            
+            // create a paragraph element, set the value = i, 
+            var pEle = $('<p>').attr('value', i);
+            // give it a css target 
+            pEle.attr('class', 'cat-text');
+            // set the text = the last element of the random array
+            pEle.text(`${i}. ${this.copyOfQuesArray[(this.copyOfQuesArray.length - 1)].category}`);
+            // append it to the page
+            pEle.appendTo('#categories-display');
+            // pop the displayed element from the array 
+            this.copyOfQuesArray.pop();
+
+        };
 
 
-        // or, remove the element from the array, push it into a different array - add them back during game reset
+        console.log('array after loop: ' + this.copyOfQuesArray);
 
-        // show Pick a Category screen
         // allow user to select a category by pressing 1, 2, or 3
         // set current category 
     },
