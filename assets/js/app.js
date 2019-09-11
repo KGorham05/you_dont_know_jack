@@ -210,10 +210,10 @@ var triviaGameObj = {
             if (e.key == 1 || e.key == 2 || e.key == 3) {
 
                 // based on which question number is pressed, save the relevant data to current game variables
-                curQuestionText  = triviaGameObj.copyOfQuesArray[(e.key - 1)].question;
-                curAnswers       = triviaGameObj.copyOfQuesArray[(e.key - 1)].answers;
-                curCorrectAnswer = triviaGameObj.copyOfQuesArray[(e.key - 1)].correctAnswer;
-                curQuestionValue = triviaGameObj.copyOfQuesArray[(e.key - 1)].value;
+                triviaGameObj.curQuestionText  = triviaGameObj.copyOfQuesArray[(e.key - 1)].question;
+                triviaGameObj.curAnswers       = triviaGameObj.copyOfQuesArray[(e.key - 1)].answers;
+                triviaGameObj.curCorrectAnswer = triviaGameObj.copyOfQuesArray[(e.key - 1)].correctAnswer;
+                triviaGameObj.curQuestionValue = triviaGameObj.copyOfQuesArray[(e.key - 1)].value;
                 
                 // remove the first 3 items of the array so they will not be reused
                 triviaGameObj.copyOfQuesArray.splice(0, 3);
@@ -231,9 +231,15 @@ var triviaGameObj = {
     },
 
     displayQuestion: function () {
+        // append the curQuestion to the question-display div
+        var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
+        
+        console.log(triviaGameObj.curQuestionText);
+        $("#question-display").append(headEle);
+        
         // show this screen
         $("#question-display").removeClass('hide');
-        
+
     },
 
 // end of game obj
