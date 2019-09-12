@@ -248,17 +248,26 @@ var triviaGameObj = {
         // listen for the user to press 1, 2, 3, or 4
         $(document).on('keydown', function (e) {
             if (e.key == 1 || e.key == 2 || e.key == 3 || e.key == 4) {
+                // add the current-choice class to whichever answer was chosen
+                $(`#a${e.key}`).addClass('current-choice');
+                
                 // target the answer that corresponds to the key pressed
                 var userGuess = $(`#a${e.key}`).text();
+
                 // turn it into an array
                 var userArray = userGuess.split("");
-               // remove the extra characters
+                // remove the extra characters
                 var formattedArray = userArray.slice(3, userArray.length);
-                var answerString = formattedArray.toString();
+                // userArray.splice(0, 3); 
+                // var formattedArray = userArray;
+
+                var answerString = formattedArray.toString().replace(/,/g, "");
                 
+                console.log(userGuess);
+                console.log(userArray);
+                console.log(formattedArray);
                 console.log(answerString);
-                // add the current-choice class to whichever answer was chosen
-                // 
+                
             }
         })
 
@@ -313,7 +322,13 @@ $(document).on('keydown', function (e) {
 });
 
 
-
+function createUniqueIDs () {
+    for (var i = 0; i < 5; i++) {
+        var firstElement = $('<p>')
+        firstElement.attr('id', ('example' + i))
+        // append the element to the page
+    }
+}
 
 // if 2 players - show pic of game controls for 10 seconds (with skip btn)
 
