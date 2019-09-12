@@ -1,7 +1,5 @@
 // PSUEDO CODE TRIVIA GAME
 
-
-
 // Create Question Array
 // Need 63 categories to not have any repeats in a 21 q game
 var questions = [{
@@ -15,7 +13,7 @@ var questions = [{
     question: "Where in the world is Carmen San Diego?",
     answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
     correctAnswer: "San Diego",
-    value: 2000, 
+    value: 2000,
 }, {
     category: "Math",
     question: "What is the airspeed velocity of an unladen swallow?",
@@ -191,7 +189,7 @@ var triviaGameObj = {
         triviaGameObj.copyOfQuesArray = triviaGameObj.shuffleArray(triviaGameObj.copyOfQuesArray);
         // use a loop to create 3 variables to hold the category data
         for (var i = 0; i < 3; i++) {
-            
+
             // create a paragraph element, set the value = i, 
             var pEle = $('<p>').attr('value', i);
             // give it a css target 
@@ -200,24 +198,24 @@ var triviaGameObj = {
             pEle.text(`${i + 1}. ${triviaGameObj.copyOfQuesArray[i].category}`);
             // append it to the page
             pEle.appendTo('#categories-display');
-              
-        }; 
+
+        };
 
 
         // select a category screen - could make it's own function
         // listen for the user to press 1, 2, or 3
-        $(document).on('keydown', function(e) {
+        $(document).on('keydown', function (e) {
             if (e.key == 1 || e.key == 2 || e.key == 3) {
 
                 // based on which question number is pressed, save the relevant data to current game variables
-                triviaGameObj.curQuestionText  = triviaGameObj.copyOfQuesArray[(e.key - 1)].question;
-                triviaGameObj.curAnswers       = triviaGameObj.copyOfQuesArray[(e.key - 1)].answers;
+                triviaGameObj.curQuestionText = triviaGameObj.copyOfQuesArray[(e.key - 1)].question;
+                triviaGameObj.curAnswers = triviaGameObj.copyOfQuesArray[(e.key - 1)].answers;
                 triviaGameObj.curCorrectAnswer = triviaGameObj.copyOfQuesArray[(e.key - 1)].correctAnswer;
                 triviaGameObj.curQuestionValue = triviaGameObj.copyOfQuesArray[(e.key - 1)].value;
-                
+
                 // remove the first 3 items of the array so they will not be reused
                 triviaGameObj.copyOfQuesArray.splice(0, 3);
-                
+
                 // remove this event listener
                 $(document).off('keydown');
 
@@ -227,22 +225,49 @@ var triviaGameObj = {
                 triviaGameObj.displayQuestion();
             }
         })
-        
+
     },
 
     displayQuestion: function () {
         // append the curQuestion to the question-display div
         var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
-        
-        console.log(triviaGameObj.curQuestionText);
         $("#question-display").append(headEle);
-        
-        // show this screen
+
+        // loop through the curAnswers array
+        for (var i = 0; i < triviaGameObj.curAnswers.length; i++) {
+            // create an element to hold the each answer
+            var answerEle = $("<p>").text(`${(i + 1)}. ${triviaGameObj.curAnswers[i]}`);
+            answerEle.attr("id", `a${(i + 1)}`);
+            // append it to the screen 
+            $("#question-display").append(answerEle);
+        };
+
+        // show this div once all pieces are appended
         $("#question-display").removeClass('hide');
+
+        // listen for the user to press 1, 2, 3, or 4
+        $(document).on('keydown', function (e) {
+            if (e.key == 1 || e.key == 2 || e.key == 3 || e.key == 4) {
+                // target the answer that corresponds to the key pressed
+                var userGuess = $(`#a${e.key}`).text();
+                // turn it into an array
+                var userArray = userGuess.split("");
+               // remove the extra characters
+                var formattedArray = userArray.slice(3, userArray.length);
+                var answerString = formattedArray.toString();
+                
+                console.log(answerString);
+                // add the current-choice class to whichever answer was chosen
+                // 
+            }
+        })
+
+
+
 
     },
 
-// end of game obj
+    // end of game obj
 };
 
 //This function moves the selector from 1 or 2 players and back. 
@@ -355,4 +380,4 @@ $(document).on('keydown', function (e) {
     // Make sure all quotes are singles or doubles - be consistent!
     // Redo variable names to keep to a convention in HTML, CSS, and JS
     // pick a category BEFORE we show the Question X screen
-
+    // LINT this
