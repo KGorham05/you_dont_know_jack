@@ -33,39 +33,34 @@ var questions = [{
 var triviaGameObj = {
 
     // Game Variables 
-    currentQuesCounter: 1,
+    questionCounter: 1,
     playerOneScore: 0,
     playerTwoScore: 0,
-    counter: 0,
+    counter: 15,
     numQuestions: 0,
     playerOneName: "",
     playerTwoName: "",
-    cOne: "",
-    cTwo: "",
-    cThree: "",
-    chosenCategory: "",
 
     curQuestionText: "",
     curAnswers: [],
     curCorrectAnswer: "",
-    curQuestionValue: 0,
-
+    curValue: 0,
 
     playerOneNameColleted: false,
     multiplayerGame: false,
-    gameHasStarted: false,
-    currentPlayer: null,
+    curPlayer: 'player one',
     timer: null,
     copyOfQuesArray: [],
 
 
     // Game Functions
     countdown: function () {
-        this.counter--;
-        $("#count-down-text").text(this.counter);
-        if (this.counter === 0) {
+        triviaGameObj.counter--;
+        console.log(triviaGameObj.counter);
+        $("#count-down").text(triviaGameObj.counter);
+        if (triviaGameObj.counter === 0) {
             console.log('Time up!');
-            clearInterval(timer);
+            clearInterval(triviaGameObj.timer);
         }
     },
 
@@ -157,14 +152,15 @@ var triviaGameObj = {
         // display this screen
         $("#current-question-screen").removeClass('hide');
         // set the text = the currentQuestion
-        $(".question-counter").text(this.currentQuesCounter);
+        $(".question-counter").text(this.questionCounter);
         // increment the current question variable
-        this.currentQuesCounter++;
+        this.questionCounter++;
         // wait 4 seconds, then run genCategories function.
         setTimeout(this.genCategories, 1000);
 
     },
 
+    // Function for shuffling the array
     shuffleArray: function (arr) {
 
         let numIterations = arr.length - 1;
@@ -177,6 +173,20 @@ var triviaGameObj = {
         return arr;
     },
 
+    displayPlayerScores: function () {
+        // reveal the scoreboard
+        $("#scoreboard").removeClass('hide');
+        $("#player-one-score").text(triviaGameObj.playerOneScore);
+        if (triviaGameObj.multiplayerGame) {
+            console.log('in a 2 player game')
+            var playerTwoEle = $("<span id='player-two-score'></span></h1>");
+            $("#player-Two-score").text(triviaGameObj.playerTwoScore);
+            $("#scoreboard").append(playerTwoEle);
+        }
+    },
+
+    // Randomly generate 3 categories for players to chose from
+    // TO-DO Display which player's turn it is to pick, alternating
     genCategories: function () {
         // hide current ? screen
         $('#current-question-screen').addClass('hide');
@@ -211,7 +221,7 @@ var triviaGameObj = {
                 triviaGameObj.curQuestionText = triviaGameObj.copyOfQuesArray[(e.key - 1)].question;
                 triviaGameObj.curAnswers = triviaGameObj.copyOfQuesArray[(e.key - 1)].answers;
                 triviaGameObj.curCorrectAnswer = triviaGameObj.copyOfQuesArray[(e.key - 1)].correctAnswer;
-                triviaGameObj.curQuestionValue = triviaGameObj.copyOfQuesArray[(e.key - 1)].value;
+                triviaGameObj.curValue = triviaGameObj.copyOfQuesArray[(e.key - 1)].value;
 
                 // remove the first 3 items of the array so they will not be reused
                 triviaGameObj.copyOfQuesArray.splice(0, 3);
@@ -229,49 +239,81 @@ var triviaGameObj = {
     },
 
     displayQuestion: function () {
+
+        this.displayPlayerScores();
+        // Display the question from the chosen category 
         // append the curQuestion to the question-display div
         var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
         $("#question-display").append(headEle);
-
+        
+        // Display 4 answers
         // loop through the curAnswers array
         for (var i = 0; i < triviaGameObj.curAnswers.length; i++) {
             // create an element to hold the each answer
-            var answerEle = $("<p>").text(`${(i + 1)}. ${triviaGameObj.curAnswers[i]}`);
-            answerEle.attr("id", `a${(i + 1)}`);
+            var answerEle = $("<p>").text(`${i + 1}. ${triviaGameObj.curAnswers[i]}`);
+            answerEle.attr("id", `a${i + 1}`);
             // append it to the screen 
             $("#question-display").append(answerEle);
         };
+        
+        // Display Cash value of correct guess 
+        // create an element to display curValue
+        var cashDiv = $("<div>").text(`$ ${triviaGameObj.curValue}`);
+        cashDiv.prependTo("#question-display");
+        
+        // Set question timer, display countdown
+        this.counter    = 15;
+        this.timer      = setInterval(this.countdown, 1000);
+        
 
         // show this div once all pieces are appended
         $("#question-display").removeClass('hide');
-
+        
         // listen for the user to press 1, 2, 3, or 4
         $(document).on('keydown', function (e) {
+
             if (e.key == 1 || e.key == 2 || e.key == 3 || e.key == 4) {
+                
                 // add the current-choice class to whichever answer was chosen
                 $(`#a${e.key}`).addClass('current-choice');
-                
+
                 // target the answer that corresponds to the key pressed
                 var userGuess = $(`#a${e.key}`).text();
-
+                
                 // turn it into an array
                 var userArray = userGuess.split("");
                 // remove the extra characters
                 var formattedArray = userArray.slice(3, userArray.length);
                 // userArray.splice(0, 3); 
                 // var formattedArray = userArray;
-
-                var answerString = formattedArray.toString().replace(/,/g, "");
                 
-                console.log(userGuess);
-                console.log(userArray);
-                console.log(formattedArray);
-                console.log(answerString);
+                var answerString = formattedArray.toString().replace(/,/g, "");
+
+                // Stop the timer
+                clearInterval(triviaGameObj.timer);
+                
+                // compare the picked answer to the correct answer
+                // if the answer is correct
+                if (answerString === triviaGameObj.curCorrectAnswer) {
+                    // update the currentPlayer's score 
+                    if (triviaGameObj.curPlayer === 'player one') {
+                        triviaGameObj.playerOneScore = triviaGameObj.playerOneScore + triviaGameObj.curValue;
+                        triviaGameObj.displayPlayerScores();
+                    } else {
+                        triviaGameObj.playerOneScore = triviaGameObj.playerTwoScore + triviaGameObj.curValue;
+                        triviaGameObj.displayPlayerScores();
+                    }
+                } else {
+                    console.log('Incorrect!');
+                }
+                // Turn off the event listener
+                $(document).off('keydown');
                 
             }
-        })
-
-
+        });
+    
+        // If the timer hits 0: reveal the correct answer
+        // run functions to progress the game -> q screen -> catGenScreen
 
 
     },
@@ -290,57 +332,47 @@ var changeNumPlayers = function () {
     }
 };
 
-// Event Listeners 
+// Listen for 1 or 2 players to trigger start of the game. 
 $(document).on('keydown', function (e) {
-    // if the game hasn't started yet
-    if (!triviaGameObj.gameHasStarted) {
-        // listen for DOWN arrow
-        if (e.which == 38) {
-            // if one-player has class current-choice, remove class current choice and add it to the select-two-player element
-            changeNumPlayers();
-        }
-        // listen for UP arrow
-        else if (e.which == 40) {
-            changeNumPlayers();
-        }
-        // listen for ENTER 
-        else if (e.which == 13) {
-            triviaGameObj.gameHasStarted = true;
-            // if one player game is selected
-            if ($("#select-one-player").hasClass('current-choice')) {
-                $(document).off('keydown');
-                triviaGameObj.startGame();
-            } else {
-                // if multiplayer game is selected
-                triviaGameObj.multiplayerGame = true;
-                $(document).off('keydown');
-                triviaGameObj.startGame();
-            }
+
+    // listen for DOWN arrow
+    if (e.which == 38) {
+        // if one-player has class current-choice, remove class current choice and add it to the select-two-player element
+        changeNumPlayers();
+    }
+    // listen for UP arrow
+    else if (e.which == 40) {
+        changeNumPlayers();
+    }
+    // listen for ENTER 
+    else if (e.which == 13) {
+        triviaGameObj.gameHasStarted = true;
+        // if one player game is selected
+        if ($("#select-one-player").hasClass('current-choice')) {
+            $(document).off('keydown');
+            triviaGameObj.startGame();
+        } else {
+            // if multiplayer game is selected
+            triviaGameObj.multiplayerGame = true;
+            $(document).off('keydown');
+            triviaGameObj.startGame();
         }
     }
 
 });
 
 
-function createUniqueIDs () {
-    for (var i = 0; i < 5; i++) {
-        var firstElement = $('<p>')
-        firstElement.attr('id', ('example' + i))
-        // append the element to the page
-    }
-}
 
-// if 2 players - show pic of game controls for 10 seconds (with skip btn)
 
-// Players (alternating) Chose 1 of 3 categories randomly selected from an array 
-// Display the question from that category 
-// Display 4 answers
-// Display Cash value of correct guess 
-// Set question timer, display countdown
+// TODO
+    // if 2 players - show pic of game controls for 10 seconds (with skip btn)
+    // If there are 2 players - listen for "q" or "p" to be pressed
+    // If "q" is pressed, set currentPlayer to playerOne : if p currentPlayer = 2
 
-// If there are 2 players - listen for "q" or "p" to be pressed
 
-// If "q" is pressed, set currentPlayer to playerOne
+
+
+
 // Let player 1 move up with "w" and down with "s", confirm choice with "space-bar"
 
 // If "p" is pressed, set currentPlayer to playerTwo
@@ -395,4 +427,7 @@ function createUniqueIDs () {
     // Make sure all quotes are singles or doubles - be consistent!
     // Redo variable names to keep to a convention in HTML, CSS, and JS
     // pick a category BEFORE we show the Question X screen
-    // LINT this
+    // LINT this 
+    // check for where I can replace triviaGameObj. with this or $(this) to better understand
+
+    // is it better to turn on/off multiple event listeners throughout the game, or would it be better to use variables to track the state of the game we're in and trigger different key events - or order and use stopPropogation
