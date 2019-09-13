@@ -2,7 +2,7 @@
 
 // Create Question Array
 // Need 63 categories to not have any repeats in a 21 q game
-var questions = [{
+var sourceArray = [{
     category: "sports",
     question: "Who wore #33 for the Celtics?",
     answers: ["I did", "You did", "Bill Russell", "Larry Bird"],
@@ -50,7 +50,7 @@ var triviaGameObj = {
     multiplayerGame: false,
     curPlayer: 'player one',
     timer: null,
-    copyOfQuesArray: [],
+    questionArray: [...sourceArray],
 
 
     // Game Functions
@@ -117,8 +117,8 @@ var triviaGameObj = {
         // hide previous screen, show this screen        
         $("#input-player-name").addClass('hide');
         $("#select-game-length").removeClass('hide');
-        // devise a way (perhaps using current-choice html/css class and an event listener) to select 7 or 21 questions.
-
+        
+        // listen for 7 or 21 question game selection
         $(document).on('keydown', function (e) {
 
             if (e.which >= 37 && e.which <= 40) {
@@ -152,11 +152,11 @@ var triviaGameObj = {
         // display this screen
         $("#current-question-screen").removeClass('hide');
         // set the text = the currentQuestion
-        $(".question-counter").text(this.questionCounter);
+        $(".question-counter").text(triviaGameObj.questionCounter);
         // increment the current question variable
-        this.questionCounter++;
+        triviaGameObj.questionCounter++;
         // wait 4 seconds, then run genCategories function.
-        setTimeout(this.genCategories, 1000);
+        setTimeout(triviaGameObj.genCategories, 1000);
 
     },
 
@@ -198,15 +198,16 @@ var triviaGameObj = {
     // Randomly generate 3 categories for players to chose from
     // TO-DO Display which player's turn it is to pick, alternating
     genCategories: function () {
+        // empty previous categories
+        $("#catagories-display").empty();
+
         // hide current ? screen
         $('#current-question-screen').addClass('hide');
         // show this screen
         $('#categories-screen').removeClass('hide');
 
-        // duplicate the original array, save it as a new variable
-        triviaGameObj.copyOfQuesArray = [...questions];
         // shuffle the new array
-        triviaGameObj.copyOfQuesArray = triviaGameObj.shuffleArray(triviaGameObj.copyOfQuesArray);
+        triviaGameObj.questionArray = triviaGameObj.shuffleArray(triviaGameObj.questionArray);
         // use a loop to create 3 variables to hold the category data
         for (var i = 0; i < 3; i++) {
 
@@ -214,13 +215,14 @@ var triviaGameObj = {
             var pEle = $('<p>').attr('value', i);
             // give it a css target 
             pEle.attr('class', 'cat-text');
-            // set the text = the last element of the random array
-            pEle.text(`${i + 1}. ${triviaGameObj.copyOfQuesArray[i].category}`);
+            // set the text = the first 3 element of the random array
+            pEle.text(`${i + 1}. ${triviaGameObj.questionArray[i].category}`);
             // append it to the page
             pEle.appendTo('#categories-display');
 
         };
 
+        
 
         // select a category screen - could make it's own function
         // listen for the user to press 1, 2, or 3
@@ -228,13 +230,13 @@ var triviaGameObj = {
             if (e.key == 1 || e.key == 2 || e.key == 3) {
 
                 // based on which question number is pressed, save the relevant data to current game variables
-                triviaGameObj.curQuestionText = triviaGameObj.copyOfQuesArray[(e.key - 1)].question;
-                triviaGameObj.curAnswers = triviaGameObj.copyOfQuesArray[(e.key - 1)].answers;
-                triviaGameObj.curCorrectAnswer = triviaGameObj.copyOfQuesArray[(e.key - 1)].correctAnswer;
-                triviaGameObj.curValue = triviaGameObj.copyOfQuesArray[(e.key - 1)].value;
+                triviaGameObj.curQuestionText = triviaGameObj.questionArray[(e.key - 1)].question;
+                triviaGameObj.curAnswers = triviaGameObj.questionArray[(e.key - 1)].answers;
+                triviaGameObj.curCorrectAnswer = triviaGameObj.questionArray[(e.key - 1)].correctAnswer;
+                triviaGameObj.curValue = triviaGameObj.questionArray[(e.key - 1)].value;
 
                 // remove the first 3 items of the array so they will not be reused
-                triviaGameObj.copyOfQuesArray.splice(0, 3);
+                triviaGameObj.questionArray.splice(0, 3);
 
                 // remove this event listener
                 $(document).off('keydown');
@@ -305,6 +307,9 @@ var triviaGameObj = {
                 // compare the picked answer to the correct answer
                 // if the answer is correct
                 if (answerString === triviaGameObj.curCorrectAnswer) {
+                    // Turn off the event listener
+                    $(document).off('keydown');
+                    
                     // display 'Correct!' on the page
                     $("#result-text").text("Correct!");
                     $("#result-text").removeClass("hide");
@@ -316,6 +321,8 @@ var triviaGameObj = {
                         triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore + triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     }
+                    
+                    setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
                 } else {
                     // display 'Incorrect!' on the page
                     $("#result-text").text("Incorrect!");
@@ -328,10 +335,9 @@ var triviaGameObj = {
                         triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore - triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     }
-                
+                    setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
                 }
-                // Turn off the event listener
-                $(document).off('keydown');
+                
                 
             }
         });
@@ -395,20 +401,6 @@ $(document).on('keydown', function (e) {
 
 
 
-
-
-// Let player 1 move up with "w" and down with "s", confirm choice with "space-bar"
-
-// If "p" is pressed, set currentPlayer to playerTwo
-// Let player 2 move up with "up-arrow" and down with "down-arrow", confirm choice with "enter"
-
-// If the time runs out - display the correct choice
-
-// Pause timer 
-// If the answer is correct
-    // Update player score variable
-    // Update score displayed on the screen
-    // Move to next question screen
 // If the answer is incorrect 
     // Check for a 2nd player
         // If there are 2 players playing
@@ -455,3 +447,4 @@ $(document).on('keydown', function (e) {
     // check for where I can replace triviaGameObj. with this or $(this) to better understand
 
     // is it better to turn on/off multiple event listeners throughout the game, or would it be better to use variables to track the state of the game we're in and trigger different key events - or order and use stopPropogation
+    // if the user score is negative, change the text color to red. 
