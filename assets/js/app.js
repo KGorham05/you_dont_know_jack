@@ -3,7 +3,7 @@
 // Create Question Array
 // Need 63 categories to not have any repeats in a 21 q game
 var sourceArray = [{
-    category: "sports",
+    category: "Sports",
     question: "Who wore #33 for the Celtics?",
     answers: ["I did", "You did", "Bill Russell", "Larry Bird"],
     correctAnswer: "Larry Bird",
@@ -26,7 +26,91 @@ var sourceArray = [{
     answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
     correctAnswer: "Phoenix Feather",
     value: 4000,
-}
+}, {
+    category: "travel",
+    question: "Where in the world is Carmen San Diego?",
+    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
+    correctAnswer: "San Diego",
+    value: 2000,
+}, {
+    category: "Math",
+    question: "What is the airspeed velocity of an unladen swallow?",
+    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
+    correctAnswer: "African or European?",
+    value: 3000,
+}, {
+    category: "Math",
+    question: "What is the airspeed velocity of an unladen swallow?",
+    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
+    correctAnswer: "African or European?",
+    value: 3000,
+}, {
+    category: "Fiction",
+    question: "What magical item is at the core of Harry Potter's wand?",
+    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
+    correctAnswer: "Phoenix Feather",
+    value: 4000,
+}, {
+    category: "travel",
+    question: "Where in the world is Carmen San Diego?",
+    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
+    correctAnswer: "San Diego",
+    value: 2000,
+}, {
+    category: "Math",
+    question: "What is the airspeed velocity of an unladen swallow?",
+    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
+    correctAnswer: "African or European?",
+    value: 3000,
+}, {
+    category: "Math",
+    question: "What is the airspeed velocity of an unladen swallow?",
+    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
+    correctAnswer: "African or European?",
+    value: 3000,
+}, {
+    category: "Fiction",
+    question: "What magical item is at the core of Harry Potter's wand?",
+    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
+    correctAnswer: "Phoenix Feather",
+    value: 4000,
+}, {
+    category: "travel",
+    question: "Where in the world is Carmen San Diego?",
+    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
+    correctAnswer: "San Diego",
+    value: 2000,
+}, {
+    category: "Math",
+    question: "What is the airspeed velocity of an unladen swallow?",
+    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
+    correctAnswer: "African or European?",
+    value: 3000,
+}, {
+    category: "Math",
+    question: "What is the airspeed velocity of an unladen swallow?",
+    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
+    correctAnswer: "African or European?",
+    value: 3000,
+}, {
+    category: "Fiction",
+    question: "What magical item is at the core of Harry Potter's wand?",
+    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
+    correctAnswer: "Phoenix Feather",
+    value: 4000,
+}, {
+    category: "travel",
+    question: "Where in the world is Carmen San Diego?",
+    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
+    correctAnswer: "San Diego",
+    value: 2000,
+}, {
+    category: "Math",
+    question: "What is the airspeed velocity of an unladen swallow?",
+    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
+    correctAnswer: "African or European?",
+    value: 3000,
+},
 ]
 
 // Create an object to hold all game logic
@@ -199,8 +283,7 @@ var triviaGameObj = {
     // TO-DO Display which player's turn it is to pick, alternating
     genCategories: function () {
         
-        // empty previous categories
-        // NOT WORKING
+        // remove previous categories from the display 
         $("#categories-display").text("");
 
         // hide current ? screen
