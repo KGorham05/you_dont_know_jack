@@ -198,8 +198,10 @@ var triviaGameObj = {
     // Randomly generate 3 categories for players to chose from
     // TO-DO Display which player's turn it is to pick, alternating
     genCategories: function () {
+        
         // empty previous categories
-        $("#catagories-display").empty();
+        // NOT WORKING
+        $("#categories-display").text("");
 
         // hide current ? screen
         $('#current-question-screen').addClass('hide');
