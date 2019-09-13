@@ -306,7 +306,6 @@ var triviaGameObj = {
                 // if the answer is correct
                 if (answerString === triviaGameObj.curCorrectAnswer) {
                     // display 'Correct!' on the page
-                    // NOT WORKING - STOPPED HERE
                     $("#result-text").text("Correct!");
                     $("#result-text").removeClass("hide");
                     // update the currentPlayer's score 
@@ -319,9 +318,17 @@ var triviaGameObj = {
                     }
                 } else {
                     // display 'Incorrect!' on the page
-                    
-                    
-                    console.log('Incorrect!');
+                    $("#result-text").text("Incorrect!");
+                    $("#result-text").removeClass("hide");
+                    // subtract the question value from user's score
+                    if (triviaGameObj.curPlayer === 'player one') {
+                        triviaGameObj.playerOneScore = triviaGameObj.playerOneScore - triviaGameObj.curValue;
+                        triviaGameObj.displayPlayerScores();
+                    } else {
+                        triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore - triviaGameObj.curValue;
+                        triviaGameObj.displayPlayerScores();
+                    }
+                
                 }
                 // Turn off the event listener
                 $(document).off('keydown');
