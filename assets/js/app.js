@@ -268,7 +268,7 @@ var triviaGameObj = {
         
         // Display Cash value of correct guess 
         // create an element to display curValue
-        var cashDiv = $("<div>").text(`$ ${triviaGameObj.curValue}`);
+        var cashDiv = $("<div>").text(`This question is worth $ ${triviaGameObj.curValue}`);
         cashDiv.prependTo("#question-display");
         
         // Set question timer, display countdown
@@ -305,15 +305,22 @@ var triviaGameObj = {
                 // compare the picked answer to the correct answer
                 // if the answer is correct
                 if (answerString === triviaGameObj.curCorrectAnswer) {
+                    // display 'Correct!' on the page
+                    // NOT WORKING - STOPPED HERE
+                    $("#result-text").text("Correct!");
+                    $("#result-text").removeClass("hide");
                     // update the currentPlayer's score 
                     if (triviaGameObj.curPlayer === 'player one') {
                         triviaGameObj.playerOneScore = triviaGameObj.playerOneScore + triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     } else {
-                        triviaGameObj.playerOneScore = triviaGameObj.playerTwoScore + triviaGameObj.curValue;
+                        triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore + triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     }
                 } else {
+                    // display 'Incorrect!' on the page
+                    
+                    
                     console.log('Incorrect!');
                 }
                 // Turn off the event listener
