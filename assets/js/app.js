@@ -112,7 +112,7 @@ var sourceArray = [{
     value: 3000,
 },
 ]
-
+console.log(sourceArray.length);
 // Create an object to hold all game logic
 var triviaGameObj = {
 
@@ -338,6 +338,11 @@ var triviaGameObj = {
     displayQuestion: function () {
 
         this.displayPlayerScores();
+
+        // remove the previous question elements if they exist
+        $("#result-text").text("");
+
+
         // Display the question from the chosen category 
         // append the curQuestion to the question-display div
         var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
