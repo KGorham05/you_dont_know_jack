@@ -174,15 +174,25 @@ var triviaGameObj = {
     },
 
     displayPlayerScores: function () {
-        // reveal the scoreboard
-        $("#scoreboard").removeClass('hide');
-        $("#player-one-score").text(triviaGameObj.playerOneScore);
+        // get rid of the previous scores
+        $("#scoreboard").empty();
+        
+        // set the text of player 1's score
+        var playerOneEle = $("<h1>");
+        playerOneEle.text(`${triviaGameObj.playerOneName}'s Score: $ ${triviaGameObj.playerOneScore.toString()}`);
+        $("#scoreboard").append(playerOneEle);
+        
+        // if its a 2 player game
         if (triviaGameObj.multiplayerGame) {
-            console.log('in a 2 player game')
-            var playerTwoEle = $("<span id='player-two-score'></span></h1>");
-            $("#player-Two-score").text(triviaGameObj.playerTwoScore);
+
+            var playerTwoEle = $("<h1>");
+            // set the text of player 2's score 
+            playerTwoEle.text(`${triviaGameObj.playerTwoName}'s Score: $ ${triviaGameObj.playerTwoScore.toString()}`);
+            // append player 2 score to the scoreboard 
             $("#scoreboard").append(playerTwoEle);
         }
+        // reveal the scoreboard
+        $("#scoreboard").removeClass('hide');
     },
 
     // Randomly generate 3 categories for players to chose from
