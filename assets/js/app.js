@@ -111,7 +111,7 @@ var sourceArray = [{
     correctAnswer: "African or European?",
     value: 3000,
 },
-]
+];
 console.log(sourceArray.length);
 // Create an object to hold all game logic
 var triviaGameObj = {
@@ -139,9 +139,11 @@ var triviaGameObj = {
 
     // Game Functions
     countdown: function () {
-        triviaGameObj.counter--;
-        console.log(triviaGameObj.counter);
+
         $("#count-down").text(triviaGameObj.counter);
+        console.log(triviaGameObj.counter);
+        triviaGameObj.counter--;
+
         if (triviaGameObj.counter === 0) {
             console.log('Time up!');
             clearInterval(triviaGameObj.timer);
@@ -257,28 +259,6 @@ var triviaGameObj = {
         return arr;
     },
 
-    displayPlayerScores: function () {
-        // get rid of the previous scores
-        $("#scoreboard").empty();
-        
-        // set the text of player 1's score
-        var playerOneEle = $("<h1>");
-        playerOneEle.text(`${triviaGameObj.playerOneName}'s Score: $ ${triviaGameObj.playerOneScore.toString()}`);
-        $("#scoreboard").append(playerOneEle);
-        
-        // if its a 2 player game
-        if (triviaGameObj.multiplayerGame) {
-
-            var playerTwoEle = $("<h1>");
-            // set the text of player 2's score 
-            playerTwoEle.text(`${triviaGameObj.playerTwoName}'s Score: $ ${triviaGameObj.playerTwoScore.toString()}`);
-            // append player 2 score to the scoreboard 
-            $("#scoreboard").append(playerTwoEle);
-        }
-        // reveal the scoreboard
-        $("#scoreboard").removeClass('hide');
-    },
-
     // Randomly generate 3 categories for players to chose from
     // TO-DO Display which player's turn it is to pick, alternating
     genCategories: function () {
@@ -335,18 +315,59 @@ var triviaGameObj = {
 
     },
 
+    displayPlayerScores: function () {
+        // get rid of the previous scores
+        $("#scoreboard").empty();
+        
+        // set the text of player 1's score
+        var playerOneEle = $("<h1>");
+        playerOneEle.text(`${triviaGameObj.playerOneName}'s Score: $ ${triviaGameObj.playerOneScore.toString()}`);
+        $("#scoreboard").append(playerOneEle);
+        
+        // if its a 2 player game
+        if (triviaGameObj.multiplayerGame) {
+
+            var playerTwoEle = $("<h1>");
+            // set the text of player 2's score 
+            playerTwoEle.text(`${triviaGameObj.playerTwoName}'s Score: $ ${triviaGameObj.playerTwoScore.toString()}`);
+            // append player 2 score to the scoreboard 
+            $("#scoreboard").append(playerTwoEle);
+        }
+        // reveal the scoreboard
+        $("#scoreboard").removeClass('hide');
+    },
+
+
     displayQuestion: function () {
-
-        this.displayPlayerScores();
-
+        
         // remove the previous question elements if they exist
+        // this wont work
         $("#result-text").text("");
+        
+        // build the question number
+        var questionNumEle = $("<div>Question " + triviaGameObj.questionCounter + "</div>");
+
+        // build the countdown timer
+        var gameClock = $("<div id='count-down'>");
+        
+        // Set question timer, display countdown
+        this.counter    = 15;
+        this.timer      = setInterval(this.countdown, 1000);
+        
+        // build the question text
+        // build the answer choices
+        
+        // build the question value
+        // build the #scoreboard
+        this.displayPlayerScores();
+        // append these pieces to the screen
+        
 
 
         // Display the question from the chosen category 
         // append the curQuestion to the question-display div
         var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
-        $("#question-display").append(headEle);
+        $("#question-screen").append(headEle);
         
         // Display 4 answers
         // loop through the curAnswers array
@@ -355,21 +376,19 @@ var triviaGameObj = {
             var answerEle = $("<p>").text(`${i + 1}. ${triviaGameObj.curAnswers[i]}`);
             answerEle.attr("id", `a${i + 1}`);
             // append it to the screen 
-            $("#question-display").append(answerEle);
+            $("#question-screen").append(answerEle);
         };
         
         // Display Cash value of correct guess 
         // create an element to display curValue
         var cashDiv = $("<div>").text(`This question is worth $ ${triviaGameObj.curValue}`);
-        cashDiv.prependTo("#question-display");
+        cashDiv.prependTo("#question-screen");
         
-        // Set question timer, display countdown
-        this.counter    = 15;
-        this.timer      = setInterval(this.countdown, 1000);
+        
         
 
         // show this div once all pieces are appended
-        $("#question-display").removeClass('hide');
+        $("#question-screen").removeClass('hide');
         
         // listen for the user to press 1, 2, 3, or 4
         $(document).on('keydown', function (e) {
@@ -502,7 +521,7 @@ $(document).on('keydown', function (e) {
         // Deduct score variable + update DOM  
         // Check for game over condition - use question counter to trigger end of game
 
-// If the game continues... 
+// If the game continues... (check for game over after answer is input)
     // Display next question screen -> 
 
 // If the game is over
