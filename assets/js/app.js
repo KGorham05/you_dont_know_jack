@@ -112,7 +112,7 @@ var sourceArray = [{
     value: 3000,
 },
 ];
-console.log(sourceArray.length);
+
 // Create an object to hold all game logic
 var triviaGameObj = {
 
@@ -147,6 +147,11 @@ var triviaGameObj = {
         if (triviaGameObj.counter === 0) {
             console.log('Time up!');
             clearInterval(triviaGameObj.timer);
+            alert(`The correct answer was: ${triviaGameObj.curCorrectAnswer}`);
+            setTimeout(function() {
+                $("#question-screen").addClass("hide");
+            }, 4000);
+            setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
         }
     },
 
@@ -459,7 +464,14 @@ var triviaGameObj = {
         });
     
         // If the timer hits 0: reveal the correct answer
-        // run functions to progress the game -> q screen -> catGenScreen
+        if (triviaGameObj.counter === 0) {
+            alert(`The correct answer was: ${triviaGameObj.curCorrectAnswer}`);
+            setTimeout(function() {
+                $("#question-screen").addClass("hide");
+            }, 4000);
+            setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
+        }
+        
 
 
     },
