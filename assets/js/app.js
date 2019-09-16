@@ -317,7 +317,7 @@ var triviaGameObj = {
 
     displayPlayerScores: function () {
         // get rid of the previous scores
-        $("#scoreboard").empty();
+        $("#scoreboard").html("");
         
         // set the text of player 1's score
         var playerOneEle = $("<h1>");
@@ -356,8 +356,8 @@ var triviaGameObj = {
 
         // Set question timer, display countdown
         // this is buggin out
-        this.counter    = 15;
-        this.timer      = setInterval(this.countdown, 1000);
+        triviaGameObj.counter    = 20;
+        triviaGameObj.timer      = setInterval(triviaGameObj.countdown, 1000);
         
         // build the question text
         var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
@@ -365,9 +365,11 @@ var triviaGameObj = {
 
         
         // build the #scoreboard
+        var scoreboard = $("<div id='scoreboard'></div>"
+        )
         
-        
-        this.displayPlayerScores();
+        $("#question-screen").append(scoreboard);
+        triviaGameObj.displayPlayerScores();
         
         
         // build the answer choices
