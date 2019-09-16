@@ -120,7 +120,7 @@ var triviaGameObj = {
     questionCounter: 1,
     playerOneScore: 0,
     playerTwoScore: 0,
-    counter: 15,
+    counter: 20,
     numQuestions: 0,
     playerOneName: "",
     playerTwoName: "",
@@ -351,7 +351,7 @@ var triviaGameObj = {
         $("#question-screen").append(questionNumEle);
 
         // build the countdown timer
-        var gameClock = $("<div id='count-down'>15</div>");
+        var gameClock = $("<div id='count-down'>20</div>");
         $("#question-screen").append(gameClock);
 
         // Set question timer, display countdown
@@ -431,7 +431,10 @@ var triviaGameObj = {
                         triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore + triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     }
-                    
+                    // hide this screen
+                    setTimeout(function() {
+                        $("#question-screen").addClass("hide");
+                    }, 4000);
                     setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
                 } else {
                     // display 'Incorrect!' on the page
@@ -445,6 +448,9 @@ var triviaGameObj = {
                         triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore - triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     }
+                    setTimeout(function() {
+                        $("#question-screen").addClass("hide");
+                    }, 4000);
                     setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
                 }
                 
