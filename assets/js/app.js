@@ -442,6 +442,8 @@ var triviaGameObj = {
                     }, 4000);
                     setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
                 } else {
+                     // Turn off the event listener
+                    $(document).off('keydown');
                     // display 'Incorrect!' on the page
                     $("#result-text").text("Incorrect!");
                     $("#result-text").removeClass("hide");
@@ -453,6 +455,7 @@ var triviaGameObj = {
                         triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore - triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     }
+                    clearInterval(triviaGameObj.timer);
                     setTimeout(function() {
                         $("#question-screen").addClass("hide");
                     }, 4000);
