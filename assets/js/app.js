@@ -287,10 +287,10 @@ var triviaGameObj = {
 
         };
 
-        
-
         // select a category screen - could make it's own function
         // listen for the user to press 1, 2, or 3
+
+        // BUG 293 to 393
         $(document).on('keydown', function (e) {
             if (e.key == 1 || e.key == 2 || e.key == 3) {
 
@@ -341,36 +341,37 @@ var triviaGameObj = {
     displayQuestion: function () {
         
         // remove the previous question elements if they exist
+        $("#question-screen").empty();
+
         // this wont work
-        $("#result-text").text("");
+        // $("#result-text").text("");
         
         // build the question number
         var questionNumEle = $("<div>Question " + triviaGameObj.questionCounter + "</div>");
+        $("#question-screen").append(questionNumEle);
 
         // build the countdown timer
-        var gameClock = $("<div id='count-down'>");
-        
+        var gameClock = $("<div id='count-down'>15</div>");
+        $("#question-screen").append(gameClock);
+
         // Set question timer, display countdown
+        // this is buggin out
         this.counter    = 15;
         this.timer      = setInterval(this.countdown, 1000);
         
         // build the question text
-        // build the answer choices
-        
-        // build the question value
-        // build the #scoreboard
-        this.displayPlayerScores();
-        // append these pieces to the screen
-        
-
-
-        // Display the question from the chosen category 
-        // append the curQuestion to the question-display div
         var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
         $("#question-screen").append(headEle);
+
         
-        // Display 4 answers
-        // loop through the curAnswers array
+        // build the #scoreboard
+        
+        
+        this.displayPlayerScores();
+        
+        
+        // build the answer choices
+        // loop through and display the curAnswers array
         for (var i = 0; i < triviaGameObj.curAnswers.length; i++) {
             // create an element to hold the each answer
             var answerEle = $("<p>").text(`${i + 1}. ${triviaGameObj.curAnswers[i]}`);
@@ -379,14 +380,12 @@ var triviaGameObj = {
             $("#question-screen").append(answerEle);
         };
         
-        // Display Cash value of correct guess 
+        
+        // build the question value
         // create an element to display curValue
         var cashDiv = $("<div>").text(`This question is worth $ ${triviaGameObj.curValue}`);
-        cashDiv.prependTo("#question-screen");
+        cashDiv.appendTo("#question-screen");
         
-        
-        
-
         // show this div once all pieces are appended
         $("#question-screen").removeClass('hide');
         
