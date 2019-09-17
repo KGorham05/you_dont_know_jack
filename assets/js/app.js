@@ -140,17 +140,24 @@ var triviaGameObj = {
     // Game Functions
     countdown: function () {
 
+        // update the timer text on the page
         $("#count-down").text(triviaGameObj.counter);
         console.log(triviaGameObj.counter);
+       
+        // decrement the counter
         triviaGameObj.counter--;
 
         if (triviaGameObj.counter === 0) {
-            console.log('Time up!');
+            console.log("Time's up!");
             clearInterval(triviaGameObj.timer);
+            
+            // display the correct answer - TODO use a modal instead of an alert
             alert(`The correct answer was: ${triviaGameObj.curCorrectAnswer}`);
+            
             setTimeout(function() {
                 $("#question-screen").addClass("hide");
             }, 4000);
+            // show question counter screen running in 4 seconds
             setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
         }
     },
@@ -348,11 +355,8 @@ var triviaGameObj = {
         // remove the previous question elements if they exist
         $("#question-screen").empty();
 
-        // this wont work
-        // $("#result-text").text("");
-        
         // build the question number
-        var questionNumEle = $("<div>Question " + triviaGameObj.questionCounter + "</div>");
+        var questionNumEle = $("<div>Question " + (triviaGameObj.questionCounter - 1) + "</div>");
         $("#question-screen").append(questionNumEle);
 
         // build the countdown timer
@@ -360,7 +364,6 @@ var triviaGameObj = {
         $("#question-screen").append(gameClock);
 
         // Set question timer, display countdown
-        // this is buggin out
         triviaGameObj.counter    = 20;
         triviaGameObj.timer      = setInterval(triviaGameObj.countdown, 1000);
         
@@ -391,7 +394,7 @@ var triviaGameObj = {
         // build the question value
         // create an element to display curValue
         var cashDiv = $("<div>").text(`This question is worth $ ${triviaGameObj.curValue}`);
-        cashDiv.appendTo("#question-screen");
+        $("#question-screen").append(cashDiv);
         
         // show this div once all pieces are appended
         $("#question-screen").removeClass('hide');
@@ -429,19 +432,24 @@ var triviaGameObj = {
                     $("#result-text").text("Correct!");
                     $("#result-text").removeClass("hide");
                     // update the currentPlayer's score 
+                    
+                    // turn this block into a function   
                     if (triviaGameObj.curPlayer === 'player one') {
                         triviaGameObj.playerOneScore = triviaGameObj.playerOneScore + triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     } else {
                         triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore + triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
-                    }
-                    // hide this screen
+                    };
+                    
+                        // hide this screen
                     setTimeout(function() {
                         $("#question-screen").addClass("hide");
                     }, 4000);
                     setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
-                } else {
+                } 
+                // if the answer is incorrect
+                else {
                      // Turn off the event listener
                     $(document).off('keydown');
                     // display 'Incorrect!' on the page
@@ -461,7 +469,6 @@ var triviaGameObj = {
                     }, 4000);
                     setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
                 }
-                
                 
             }
         });
