@@ -187,9 +187,6 @@ var triviaGameObj = {
                 setTimeout(function() {$("#question-screen").addClass("hide")}, 8 * 1000);
                 setTimeout(triviaGameObj.showQuestionCounterScreen, 8 * 1000);
             };
-            
-            
-
         };
 
     },
@@ -507,9 +504,15 @@ var triviaGameObj = {
     },
 
     gameOver: function() {
-        console.log('THe game is now over!')
+        console.log('THe game is now over!');
+        // display text that says "GAME OVER"
+        // if the game is multiplayer, declare a winner
+        // Display the final player scores
+        // create a button to restart the game
+        // listen for click of the button...
     }
-    // end of game obj
+
+// end of game obj
 };
 
 //This function moves the selector from 1 or 2 players and back. 
