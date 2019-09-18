@@ -138,23 +138,33 @@ var triviaGameObj = {
     countdown: function () {
 
         // update the timer text on the page
-        $("#count-down").text(triviaGameObj.counter);
+        $("#count-down").text(triviaGameObj.counter - 1);
         console.log(triviaGameObj.counter);
        
         // decrement the counter
         triviaGameObj.counter--;
 
         if (triviaGameObj.counter === 0) {
-            console.log("Time's up!");
+            
             clearInterval(triviaGameObj.timer);
-            
-            // display the correct answer - TODO use a modal instead of an alert
-            alert(`The correct answer was: ${triviaGameObj.curCorrectAnswer}`);
-            
-            setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
-            // show question counter screen running in 4 seconds
-            setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
-        }
+            // stop any key listener events
+            $(document).off("keydown");
+
+            // update result text element
+
+            setTimeout(function() {
+                $("#result-text").text("Out of Time!");
+                $("#result-text").removeClass("hide");
+                $(".correct-answer").addClass("current-choice");
+            }, 1000);
+
+            // reveal the correct answer 
+
+            setTimeout(function() {$("#question-screen").addClass("hide")}, 8 * 1000);
+            setTimeout(triviaGameObj.showQuestionCounterScreen, 8 * 1000);
+
+        };
+
     },
 
     startGame: function () {
@@ -342,41 +352,34 @@ var triviaGameObj = {
         
         // remove the previous question elements if they exist
         $("#question-screen").empty();
-
         // build the question number
         var questionNumEle = $("<div>Question " + (triviaGameObj.questionCounter - 1) + "</div>");
         $("#question-screen").append(questionNumEle);
-
         // build the countdown timer
         var gameClock = $("<div id='count-down'>20</div>");
         $("#question-screen").append(gameClock);
-
         // Set question timer, display countdown
         triviaGameObj.counter    = 20;
         triviaGameObj.timer      = setInterval(triviaGameObj.countdown, 1000);
-        
         // build the question text
         var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
         $("#question-screen").append(headEle);
-
-        
         // build the #scoreboard
-        var scoreboard = $("<div id='scoreboard'></div>"
-        )
-        
+        var scoreboard = $("<div id='scoreboard'></div>");
         $("#question-screen").append(scoreboard);
         triviaGameObj.displayPlayerScores();
-        
-        // build correct/incorrect answer text element
+        // build answer text elements
         var resultText = $("<p id='result-text'>");
         $("#question-screen").append(resultText);
-        
-        // build the answer choices
         // loop through and display the curAnswers array
         for (var i = 0; i < triviaGameObj.curAnswers.length; i++) {
             // create an element to hold the each answer
             var answerEle = $("<p>").text(`${i + 1}. ${triviaGameObj.curAnswers[i]}`);
             answerEle.attr("id", `a${i + 1}`);
+            // if the answer is the correct answer, attach a class to it
+            if (triviaGameObj.curAnswers[i] === triviaGameObj.curCorrectAnswer) {
+                answerEle.attr("class", "correct-answer")
+            };
             // append it to the screen 
             $("#question-screen").append(answerEle);
         };
@@ -454,22 +457,10 @@ var triviaGameObj = {
                     }
                     setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
                     setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
-                }
-                
+                }  
             }
         });
     
-        // If the timer hits 0: reveal the correct answer
-        if (triviaGameObj.counter === 0) {
-            alert(`The correct answer was: ${triviaGameObj.curCorrectAnswer}`);
-            setTimeout(function() {
-                $("#question-screen").addClass("hide");
-            }, 4000);
-            setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
-        }
-        
-
-
     },
 
     // end of game obj
