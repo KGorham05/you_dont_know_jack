@@ -175,7 +175,7 @@ var triviaGameObj = {
                 $("#result-text").text("Out of Time!");
                 $("#result-text").removeClass("hide");
                 // reveal the correct answer 
-                $(".correct-answer").addClass("current-answer-border");
+                $(".correct-answer").addClass("correct-answer-border");
             }, 1000);
 
             // check for gameOver
