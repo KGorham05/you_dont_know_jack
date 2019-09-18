@@ -153,7 +153,6 @@ var triviaGameObj = {
     timer: null,
     questionArray: [...sourceArray],
 
-    // Game Functions
     countdown: function () {
 
         // update the timer text on the page
@@ -192,7 +191,7 @@ var triviaGameObj = {
 
     },
 
-    //This function moves the selector from 1 or 2 players and back. 
+
     changeNumPlayers: function () {
         if ($("#select-one-player").hasClass('current-choice')) {
             $("#select-one-player").removeClass('current-choice');
@@ -336,7 +335,6 @@ var triviaGameObj = {
 
     },
 
-    // Function for shuffling the array
     shuffleArray: function (arr) {
 
         let numIterations = arr.length - 1;
@@ -349,8 +347,6 @@ var triviaGameObj = {
         return arr;
     },
 
-    // Randomly generate 3 categories for players to chose from
-    // TO-DO Display which player's turn it is to pick, alternating
     genCategories: function () {
         
         // remove previous categories from the display 
@@ -418,7 +414,6 @@ var triviaGameObj = {
         }
         
     },
-
 
     displayQuestion: function () {
         
@@ -603,7 +598,6 @@ var triviaGameObj = {
         triviaGameObj.setupGame();
     }
 
-// end of game obj
 };
 
 triviaGameObj.setupGame();
@@ -613,13 +607,10 @@ triviaGameObj.setupGame();
 // WORKING ON
     // building the gameOver screen/function 
 
-
 // TODO
     // if 2 players - show pic of game controls for 10 seconds (with skip btn)
     // If there are 2 players - listen for "q" or "p" to be pressed
     // If "q" is pressed, set currentPlayer to playerOne : if p currentPlayer = 2
-
-
 
 // If the answer is incorrect 
     // Check for a 2nd player
@@ -643,7 +634,6 @@ triviaGameObj.setupGame();
     // if there is 1 player
         // show final score
         // generate restart game button
-
 
 // ***Stretch Goals***
 
@@ -669,24 +659,4 @@ triviaGameObj.setupGame();
     // is it better to turn on/off multiple event listeners throughout the game, or would it be better to use variables to track the state of the game we're in and trigger different key events - or order and use stopPropogation
     // if the user score is negative, change the text color to red. 
 
-    function geocodePlaceId(geocoder, map, infowindow) {
-        var placeId = document.getElementById('place-id').value;
-        geocoder.geocode({'placeId': placeId}, function(results, status) {
-          if (status === 'OK') {
-            if (results[0]) {
-              map.setZoom(11);
-              map.setCenter(results[0].geometry.location);
-              var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-              });
-              infowindow.setContent(results[0].formatted_address);
-              infowindow.open(map, marker);
-            } else {
-              window.alert('No results found');
-            }
-          } else {
-            window.alert('Geocoder failed due to: ' + status);
-          }
-        });
-      }
+    
