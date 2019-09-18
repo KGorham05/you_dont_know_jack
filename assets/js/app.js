@@ -110,7 +110,26 @@ var sourceArray = [{
     answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
     correctAnswer: "African or European?",
     value: 3000,
-},
+}, {
+    category: "Fiction",
+    question: "What magical item is at the core of Harry Potter's wand?",
+    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
+    correctAnswer: "Phoenix Feather",
+    value: 4000,
+}, {
+    category: "travel",
+    question: "Where in the world is Carmen San Diego?",
+    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
+    correctAnswer: "San Diego",
+    value: 2000,
+}, {
+    category: "Math",
+    question: "What is the airspeed velocity of an unladen swallow?",
+    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
+    correctAnswer: "African or European?",
+    value: 3000,
+}
+
 ];
 
 // Create an object to hold all game logic
@@ -155,13 +174,21 @@ var triviaGameObj = {
             setTimeout(function() {
                 $("#result-text").text("Out of Time!");
                 $("#result-text").removeClass("hide");
+                // reveal the correct answer 
                 $(".correct-answer").addClass("current-choice");
             }, 1000);
 
-            // reveal the correct answer 
-
-            setTimeout(function() {$("#question-screen").addClass("hide")}, 8 * 1000);
-            setTimeout(triviaGameObj.showQuestionCounterScreen, 8 * 1000);
+            // check for gameOver
+            if (triviaGameObj.questionCounter === triviaGameObj.numQuestions + 1) {
+                setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
+                setTimeout(triviaGameObj.gameOver, 4000);
+            } else {
+                // hide this screen
+                setTimeout(function() {$("#question-screen").addClass("hide")}, 8 * 1000);
+                setTimeout(triviaGameObj.showQuestionCounterScreen, 8 * 1000);
+            };
+            
+            
 
         };
 
@@ -439,17 +466,14 @@ var triviaGameObj = {
                     
                     // check for game over condition
                     if (triviaGameObj.questionCounter === triviaGameObj.numQuestions + 1) {
-                        console.log("That's Game!");
+                        
                         setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
-                        setTimeout(gameOver, 4000);
+                        setTimeout(triviaGameObj.gameOver, 4000);
                     } else {
                         // hide this screen
                         setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
                         setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
-                    }
-
-
-
+                    };
                 } 
                 // if the answer is incorrect
                 else {
@@ -465,9 +489,17 @@ var triviaGameObj = {
                     } else {
                         triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore - triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
-                    }
-                    setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
-                    setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
+                    };
+
+                    if (triviaGameObj.questionCounter === triviaGameObj.numQuestions + 1) {
+                        
+                        setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
+                        setTimeout(triviaGameObj.gameOver, 4000);
+                    } else {
+                        // hide this screen
+                        setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
+                        setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
+                    };
                 }  
             }
         });
@@ -475,7 +507,7 @@ var triviaGameObj = {
     },
 
     gameOver: function() {
-
+        console.log('THe game is now over!')
     }
     // end of game obj
 };
