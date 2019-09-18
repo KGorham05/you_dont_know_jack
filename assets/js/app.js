@@ -192,6 +192,52 @@ var triviaGameObj = {
 
     },
 
+    //This function moves the selector from 1 or 2 players and back. 
+    changeNumPlayers: function () {
+        if ($("#select-one-player").hasClass('current-choice')) {
+            $("#select-one-player").removeClass('current-choice');
+            $("#select-two-player").addClass('current-choice');
+        } else {
+            $("#select-two-player").removeClass('current-choice');
+            $("#select-one-player").addClass('current-choice');
+        }
+    },
+
+    setupGame: function() {
+        // reveal the setup-game-screen
+        $("#setup-game-screen").removeClass("hide");
+
+        // Listen for 1 or 2 players to trigger start of the game. 
+        $(document).on('keydown', function (e) {
+
+            // listen for DOWN arrow
+            if (e.which == 38) {
+                // if one-player has class current-choice, remove class current choice and add it to the select-two-player element
+                triviaGameObj.changeNumPlayers();
+            }
+            // listen for UP arrow
+            else if (e.which == 40) {
+                triviaGameObj.changeNumPlayers();
+            }
+            
+            // listen for ENTER 
+            else if (e.which == 13) {
+                triviaGameObj.gameHasStarted = true;
+                // if one player game is selected
+                if ($("#select-one-player").hasClass('current-choice')) {
+                    $(document).off('keydown');
+                    triviaGameObj.startGame();
+                } else {
+                    // if multiplayer game is selected
+                    triviaGameObj.multiplayerGame = true;
+                    $(document).off('keydown');
+                    triviaGameObj.startGame();
+                }
+            }
+
+        });
+    },
+
     startGame: function () {
         console.log('Multiplayer = ' + this.multiplayerGame)
         // hide the setup-game-screen 
@@ -200,6 +246,8 @@ var triviaGameObj = {
     },
 
     capturePlayerNames: function () {
+        // empty input field in case we've already played the game once
+        $("#name-input").val("");
         // reveal this screen
         $("#input-player-name").removeClass('hide');
         // listen for ENTER btn
@@ -512,7 +560,8 @@ var triviaGameObj = {
     },
 
     gameOver: function() {
-        console.log('THe game is now over!');
+        // clear the previous gameover screen 
+        $("#game-over-screen").empty();
         // display text that says "GAME OVER"
         var gameOverText = $("<p id='game-over-text'>Game Over!</p>");
         // TO DO - if the game is multiplayer, declare a winner
@@ -531,53 +580,35 @@ var triviaGameObj = {
     },
 
     restartGame: function() {
+        // hide the game over screen
+        $("#game-over-screen").addClass("hide");
         // reset global variables to original state
+        triviaGameObj.questionCounter = 1;
+        triviaGameObj.playerOneScore = 0;
+        triviaGameObj.playerTwoScore = 0;
+        triviaGameObj.counter = 20;
+        triviaGameObj.numQuestions = 0;
+        triviaGameObj.playerOneName = "";
+        triviaGameObj.playerTwoName = "";
+        triviaGameObj.curQuestionText = "";
+        triviaGameObj.curAnswers = [];
+        triviaGameObj.curCorrectAnswer = "";
+        triviaGameObj.curValue = 0;
+        triviaGameObj.playerOneNameColleted = false;
+        triviaGameObj.multiplayerGame = false;
+        triviaGameObj.curPlayer = 'player one';
+        triviaGameObj.timer = null;
+        triviaGameObj.questionArray = [...sourceArray];
         // run start game function 
-        console.log('Clicked the restart button!');
+        triviaGameObj.setupGame();
     }
 
 // end of game obj
 };
 
-//This function moves the selector from 1 or 2 players and back. 
-var changeNumPlayers = function () {
-    if ($("#select-one-player").hasClass('current-choice')) {
-        $("#select-one-player").removeClass('current-choice');
-        $("#select-two-player").addClass('current-choice');
-    } else {
-        $("#select-two-player").removeClass('current-choice');
-        $("#select-one-player").addClass('current-choice');
-    }
-};
+triviaGameObj.setupGame();
 
-// Listen for 1 or 2 players to trigger start of the game. 
-$(document).on('keydown', function (e) {
 
-    // listen for DOWN arrow
-    if (e.which == 38) {
-        // if one-player has class current-choice, remove class current choice and add it to the select-two-player element
-        changeNumPlayers();
-    }
-    // listen for UP arrow
-    else if (e.which == 40) {
-        changeNumPlayers();
-    }
-    // listen for ENTER 
-    else if (e.which == 13) {
-        triviaGameObj.gameHasStarted = true;
-        // if one player game is selected
-        if ($("#select-one-player").hasClass('current-choice')) {
-            $(document).off('keydown');
-            triviaGameObj.startGame();
-        } else {
-            // if multiplayer game is selected
-            triviaGameObj.multiplayerGame = true;
-            $(document).off('keydown');
-            triviaGameObj.startGame();
-        }
-    }
-
-});
 
 // WORKING ON
     // building the gameOver screen/function 
