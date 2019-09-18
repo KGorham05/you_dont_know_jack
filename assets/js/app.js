@@ -436,9 +436,20 @@ var triviaGameObj = {
                         triviaGameObj.displayPlayerScores();
                     };
                     
-                    // hide this screen
-                    setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
-                    setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
+                    
+                    // check for game over condition
+                    if (triviaGameObj.questionCounter === triviaGameObj.numQuestions + 1) {
+                        console.log("That's Game!");
+                        setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
+                        setTimeout(gameOver, 4000);
+                    } else {
+                        // hide this screen
+                        setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
+                        setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
+                    }
+
+
+
                 } 
                 // if the answer is incorrect
                 else {
@@ -463,6 +474,9 @@ var triviaGameObj = {
     
     },
 
+    gameOver: function() {
+
+    }
     // end of game obj
 };
 
@@ -506,7 +520,8 @@ $(document).on('keydown', function (e) {
 
 });
 
-
+// WORKING ON
+    // running a game over screen if 
 
 
 // TODO
