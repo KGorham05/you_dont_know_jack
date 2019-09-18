@@ -149,6 +149,7 @@ var triviaGameObj = {
     curValue: 0,
     playerOneNameColleted: false,
     multiplayerGame: false,
+    playerOneTurn: true,
     curPlayer: 'player one',
     timer: null,
     questionArray: [...sourceArray],
@@ -157,7 +158,6 @@ var triviaGameObj = {
 
         // update the timer text on the page
         $("#count-down").text(triviaGameObj.counter - 1);
-        console.log(triviaGameObj.counter);
        
         // decrement the counter
         triviaGameObj.counter--;
@@ -225,23 +225,18 @@ var triviaGameObj = {
                 // if one player game is selected
                 if ($("#select-one-player").hasClass('current-choice')) {
                     $(document).off('keydown');
-                    triviaGameObj.startGame();
+                    $("#setup-game-screen").addClass('hide');
+                    triviaGameObj.capturePlayerNames();
                 } else {
                     // if multiplayer game is selected
                     triviaGameObj.multiplayerGame = true;
                     $(document).off('keydown');
-                    triviaGameObj.startGame();
+                    $("#setup-game-screen").addClass('hide');
+                    triviaGameObj.capturePlayerNames();
                 }
             }
 
         });
-    },
-
-    startGame: function () {
-        console.log('Multiplayer = ' + this.multiplayerGame)
-        // hide the setup-game-screen 
-        $("#setup-game-screen").addClass('hide');
-        this.capturePlayerNames();
     },
 
     capturePlayerNames: function () {
@@ -317,22 +312,41 @@ var triviaGameObj = {
                 // hide this screen
                 $("#select-game-length").addClass('hide');
                 // go to choose category screen
-                triviaGameObj.showQuestionCounterScreen();
+                triviaGameObj.displayMultiplayerInstructions();
             }
         });
 
     },
 
+    displayMultiplayerInstructions: function() {
+        // check if multiplayer game
+        if (triviaGameObj.multiplayerGame) {
+            // display the multiplayer instructions
+            $("#multiplayer-instructions").removeClass("hide");
+
+            // after 7 seconds, display the questionCounterScreen
+            setTimeout(triviaGameObj.showQuestionCounterScreen, 7 * 1000);
+
+        } 
+        // if it's single player progress game to showQuestionCounterScreen
+        else {
+            triviaGameObj.showQuestionCounterScreen();
+        }
+
+
+    },
+
     showQuestionCounterScreen: function () {
+        // hide the multiplayer instructions if they exist
+        $("#multiplayer-instructions").addClass("hide");
         // display this screen
-        $("#current-question-screen").removeClass('hide');
+        $("#current-question-screen").removeClass("hide");
         // set the text = the currentQuestion
         $(".question-counter").text(triviaGameObj.questionCounter);
         // increment the current question variable
         triviaGameObj.questionCounter++;
         // wait 4 seconds, then run genCategories function.
         setTimeout(triviaGameObj.genCategories, 1000);
-
     },
 
     shuffleArray: function (arr) {
@@ -368,6 +382,26 @@ var triviaGameObj = {
             // append it to the page
             p.appendTo('#categories-display');
         };
+
+        // if the game is multiplayer
+        if (triviaGameObj.multiplayerGame) {
+            // build an element to display who's turn it is to pick
+            var turn = $("<p>");
+            // if it is player one's turn to pick
+            if (triviaGameObj.playerOneTurn) {
+                // flip flag
+                triviaGameObj.playerOneTurn = false;
+                // display Player One's turn to pick
+                turn.text(`${triviaGameObj.playerOneName}'s turn to pick!`);
+                $("#categories-display").append(turn);
+            } else {
+                // flip flag
+                triviaGameObj.playerOneTurn = true;
+                // display Player Two's turn to pick
+                turn.text(`${triviaGameObj.playerTwoName}'s turn to pick!`)
+                $("#categories-display").append(turn);
+            };
+        }
              
         // select a category screen 
         $(document).on('keydown', function (e) {
@@ -594,6 +628,7 @@ var triviaGameObj = {
         triviaGameObj.curPlayer = 'player one';
         triviaGameObj.timer = null;
         triviaGameObj.questionArray = [...sourceArray];
+        triviaGameObj.playerOneTurn = true;
         // run start game function 
         triviaGameObj.setupGame();
     }
