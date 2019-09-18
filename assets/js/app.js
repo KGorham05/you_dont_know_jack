@@ -154,9 +154,7 @@ var triviaGameObj = {
             // display the correct answer - TODO use a modal instead of an alert
             alert(`The correct answer was: ${triviaGameObj.curCorrectAnswer}`);
             
-            setTimeout(function() {
-                $("#question-screen").addClass("hide");
-            }, 4000);
+            setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
             // show question counter screen running in 4 seconds
             setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
         }
@@ -404,6 +402,8 @@ var triviaGameObj = {
 
             if (e.key == 1 || e.key == 2 || e.key == 3 || e.key == 4) {
                 
+                // turn off the event listener
+                $(document).off('keydown');
                 // add the current-choice class to whichever answer was chosen
                 $(`#a${e.key}`).addClass('current-choice');
 
@@ -425,8 +425,6 @@ var triviaGameObj = {
                 // compare the picked answer to the correct answer
                 // if the answer is correct
                 if (answerString === triviaGameObj.curCorrectAnswer) {
-                    // Turn off the event listener
-                    $(document).off('keydown');
                     
                     // display 'Correct!' on the page
                     $("#result-text").text("Correct!");
@@ -450,8 +448,6 @@ var triviaGameObj = {
                 } 
                 // if the answer is incorrect
                 else {
-                     // Turn off the event listener
-                    $(document).off('keydown');
                     // display 'Incorrect!' on the page
                     $("#result-text").text("Incorrect!");
                     $("#result-text").removeClass("hide");
@@ -463,10 +459,7 @@ var triviaGameObj = {
                         triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore - triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     }
-                    clearInterval(triviaGameObj.timer);
-                    setTimeout(function() {
-                        $("#question-screen").addClass("hide");
-                    }, 4000);
+                    setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
                     setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
                 }
                 
@@ -586,3 +579,25 @@ $(document).on('keydown', function (e) {
 
     // is it better to turn on/off multiple event listeners throughout the game, or would it be better to use variables to track the state of the game we're in and trigger different key events - or order and use stopPropogation
     // if the user score is negative, change the text color to red. 
+
+    function geocodePlaceId(geocoder, map, infowindow) {
+        var placeId = document.getElementById('place-id').value;
+        geocoder.geocode({'placeId': placeId}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              map.setZoom(11);
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+              });
+              infowindow.setContent(results[0].formatted_address);
+              infowindow.open(map, marker);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
