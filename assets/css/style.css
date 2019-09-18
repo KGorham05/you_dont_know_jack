@@ -50,6 +50,10 @@ body {
     border: 2px solid fuchsia;
 }
 
+.correct-answer-border {
+    border: 2px solid aqua;
+}
+
 #input-player-name {
     text-align: center;
 }

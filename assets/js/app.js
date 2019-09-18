@@ -175,10 +175,11 @@ var triviaGameObj = {
                 $("#result-text").text("Out of Time!");
                 $("#result-text").removeClass("hide");
                 // reveal the correct answer 
-                $(".correct-answer").addClass("current-choice");
+                $(".correct-answer").addClass("current-answer-border");
             }, 1000);
 
             // check for gameOver
+            // working gameOver function 
             if (triviaGameObj.questionCounter === triviaGameObj.numQuestions + 1) {
                 setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
                 setTimeout(triviaGameObj.gameOver, 4000);
@@ -193,7 +194,7 @@ var triviaGameObj = {
 
     startGame: function () {
         console.log('Multiplayer = ' + this.multiplayerGame)
-        // hide the setup-game-screen
+        // hide the setup-game-screen 
         $("#setup-game-screen").addClass('hide');
         this.capturePlayerNames();
     },
@@ -351,24 +352,23 @@ var triviaGameObj = {
 
     displayPlayerScores: function () {
         // get rid of the previous scores
-        $("#scoreboard").html("");
+        $(".scoreboard").html("");
         
         // set the text of player 1's score
-        var playerOneEle = $("<h1>");
-        playerOneEle.text(`${triviaGameObj.playerOneName}'s Score: $ ${triviaGameObj.playerOneScore.toString()}`);
-        $("#scoreboard").append(playerOneEle);
+        var pOneScore = $("<h1>");
+        pOneScore.text(`${triviaGameObj.playerOneName}'s Score: $ ${triviaGameObj.playerOneScore.toString()}`);
+        $(".scoreboard").append(pOneScore);
         
         // if its a 2 player game
         if (triviaGameObj.multiplayerGame) {
 
-            var playerTwoEle = $("<h1>");
+            var pTwoScore = $("<h1>");
             // set the text of player 2's score 
-            playerTwoEle.text(`${triviaGameObj.playerTwoName}'s Score: $ ${triviaGameObj.playerTwoScore.toString()}`);
+            pTwoScore.text(`${triviaGameObj.playerTwoName}'s Score: $ ${triviaGameObj.playerTwoScore.toString()}`);
             // append player 2 score to the scoreboard 
-            $("#scoreboard").append(playerTwoEle);
+            $(".scoreboard").append(pTwoScore);
         }
-        // reveal the scoreboard
-        $("#scoreboard").removeClass('hide');
+        
     },
 
 
@@ -388,8 +388,8 @@ var triviaGameObj = {
         // build the question text
         var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
         $("#question-screen").append(headEle);
-        // build the #scoreboard
-        var scoreboard = $("<div id='scoreboard'></div>");
+        // build the .scoreboard
+        var scoreboard = $("<div class='scoreboard'></div>");
         $("#question-screen").append(scoreboard);
         triviaGameObj.displayPlayerScores();
         // build answer text elements
@@ -476,8 +476,15 @@ var triviaGameObj = {
                 else {
                     
                     // display 'Incorrect!' on the page
-                    $("#result-text").text("Incorrect!");
+                    $("#result-text").text("Incorrect! The correct answer was:");
                     $("#result-text").removeClass("hide");
+
+                    // reveal the correct answer 
+                    setTimeout(function () {
+                        $(`#a${e.key}`).removeClass('current-choice');
+                        $(".correct-answer").addClass("correct-answer-border");  
+                    }, 1000);
+                    
 
                     // subtract the question value from user's score
                     if (triviaGameObj.curPlayer === 'player one') {
@@ -488,14 +495,15 @@ var triviaGameObj = {
                         triviaGameObj.displayPlayerScores();
                     };
 
+                    // if this was the last question 
                     if (triviaGameObj.questionCounter === triviaGameObj.numQuestions + 1) {
                         
-                        setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
-                        setTimeout(triviaGameObj.gameOver, 4000);
+                        setTimeout(function() {$("#question-screen").addClass("hide")}, 7 * 1000);
+                        setTimeout(triviaGameObj.gameOver, 7 * 1000);
                     } else {
                         // hide this screen
-                        setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
-                        setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
+                        setTimeout(function() {$("#question-screen").addClass("hide")}, 6 * 1000);
+                        setTimeout(triviaGameObj.showQuestionCounterScreen, 6 * 1000);
                     };
                 }  
             }
@@ -506,10 +514,26 @@ var triviaGameObj = {
     gameOver: function() {
         console.log('THe game is now over!');
         // display text that says "GAME OVER"
-        // if the game is multiplayer, declare a winner
+        var gameOverText = $("<p id='game-over-text'>Game Over!</p>");
+        // TO DO - if the game is multiplayer, declare a winner
+        
         // Display the final player scores
+        var scoreboard = $("<div class='scoreboard'>");
         // create a button to restart the game
+        var restartBtn = $("<button id='restart-btn'>Restart</button>");
+        
+        $("#game-over-screen").append(gameOverText, scoreboard, restartBtn);
+        triviaGameObj.displayPlayerScores();
+        // reveal the game-over-screen
+        $("#game-over-screen").removeClass("hide");
         // listen for click of the button...
+        $(document).on('click', '#restart-btn', triviaGameObj.restartGame);
+    },
+
+    restartGame: function() {
+        // reset global variables to original state
+        // run start game function 
+        console.log('Clicked the restart button!');
     }
 
 // end of game obj
@@ -556,7 +580,7 @@ $(document).on('keydown', function (e) {
 });
 
 // WORKING ON
-    // running a game over screen if 
+    // building the gameOver screen/function 
 
 
 // TODO
