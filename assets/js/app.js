@@ -124,18 +124,15 @@ var triviaGameObj = {
     numQuestions: 0,
     playerOneName: "",
     playerTwoName: "",
-
     curQuestionText: "",
     curAnswers: [],
     curCorrectAnswer: "",
     curValue: 0,
-
     playerOneNameColleted: false,
     multiplayerGame: false,
     curPlayer: 'player one',
     timer: null,
     questionArray: [...sourceArray],
-
 
     // Game Functions
     countdown: function () {
@@ -198,7 +195,7 @@ var triviaGameObj = {
                         $(document).off('keydown');
                         triviaGameObj.selectGameLength();
                     }
-                    // if we already have
+                    // if we already have player 1's name
                 } else {
                     triviaGameObj.playerTwoName = $("#name-input").val().trim();
                     // disable the event listener
@@ -275,33 +272,27 @@ var triviaGameObj = {
         
         // remove previous categories from the display 
         $("#categories-display").text("");
-
         // hide current ? screen
         $('#current-question-screen').addClass('hide');
         // show this screen
         $('#categories-screen').removeClass('hide');
-
         // shuffle the new array
         triviaGameObj.questionArray = triviaGameObj.shuffleArray(triviaGameObj.questionArray);
         // use a loop to create 3 variables to hold the category data
         for (var i = 0; i < 3; i++) {
-
             // create a paragraph element, set the value = i, 
-            var pEle = $('<p>').attr('value', i);
+            var p = $('<p>').attr('value', i);
             // give it a css target 
-            pEle.attr('class', 'cat-text');
+            p.attr('class', 'cat-text');
             // set the text = the first 3 element of the random array
-            pEle.text(`${i + 1}. ${triviaGameObj.questionArray[i].category}`);
+            p.text(`${i + 1}. ${triviaGameObj.questionArray[i].category}`);
             // append it to the page
-            pEle.appendTo('#categories-display');
-
+            p.appendTo('#categories-display');
         };
-
-        // select a category screen - could make it's own function
-        // listen for the user to press 1, 2, or 3
-
-        // BUG 293 to 393
+             
+        // select a category screen 
         $(document).on('keydown', function (e) {
+            // listen for the user to press 1, 2, or 3
             if (e.key == 1 || e.key == 2 || e.key == 3) {
 
                 // based on which question number is pressed, save the relevant data to current game variables
@@ -322,7 +313,6 @@ var triviaGameObj = {
                 triviaGameObj.displayQuestion();
             }
         })
-
     },
 
     displayPlayerScores: function () {
@@ -377,6 +367,9 @@ var triviaGameObj = {
         $("#question-screen").append(scoreboard);
         triviaGameObj.displayPlayerScores();
         
+        // build correct/incorrect answer text element
+        var resultText = $("<p id='result-text'>");
+        $("#question-screen").append(resultText);
         
         // build the answer choices
         // loop through and display the curAnswers array
@@ -440,17 +433,17 @@ var triviaGameObj = {
                         triviaGameObj.displayPlayerScores();
                     };
                     
-                        // hide this screen
-                    setTimeout(function() {
-                        $("#question-screen").addClass("hide");
-                    }, 4000);
+                    // hide this screen
+                    setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
                     setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
                 } 
                 // if the answer is incorrect
                 else {
+                    
                     // display 'Incorrect!' on the page
                     $("#result-text").text("Incorrect!");
                     $("#result-text").removeClass("hide");
+
                     // subtract the question value from user's score
                     if (triviaGameObj.curPlayer === 'player one') {
                         triviaGameObj.playerOneScore = triviaGameObj.playerOneScore - triviaGameObj.curValue;
