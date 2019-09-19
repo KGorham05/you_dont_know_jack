@@ -132,6 +132,70 @@ var sourceArray = [{
 
 ];
 
+var ydkjArray = [{
+    category: "Hey Where are you Sticking that Hand?",
+    question: "Which of the following is a Sesame Street muppet inspired by a real person?",
+    answers: ["Senator Walter Mongoose", "Red Spotted Newt Gingrich", "H. Ross Parrot", "Mayor Ed Conch"],
+    correctAnswer: "H. Ross Parrot",
+    value: 2000,
+}, {
+    category: "So Bad, They're Not Even Good",
+    question: 'If the band responsible for "White Rabbit" and "Somebody to Love" were combined with a disaster relief film, what might they be called?',
+    answers: ["They Might be Ishtar", "The Beastie Boy in the plastic bubble", "Jefferson Airport '77", "Queen is on fire"],
+    correctAnswer: "Jefferson Airport '77",
+    value: 2000,
+}, {
+    category: "I'm a Lucky Dog",
+    question: 'Which of the following questions, if asked by you, would be "rhetorical?"', 
+    answers: ["How much is this costing you?", "Can I have your autograph?", "Who wouldn't want to be me right now?", "Do you have any diseases?"],
+    correctAnswer: "Who wouldn't want to be me right now?",
+    value: 1000,
+}, {
+    category: "When Cooks Go Insane",
+    question: "Which particular element of your meal contains the highest percentage of water?", 
+    answers: ["The thousand island dressing", "The cooked spaghetti", "The roasted raccoon", "The 100 proof whisky"],
+    correctAnswer: "The cooked spaghetti",
+    value: 1000,
+}, {
+    category: "A Hero for the '90's",
+    question: `Let's say D.C. comics introduced a new hero named "Inertia Man." Of the following, which superhero power would you expect him to be LACKING?`, 
+    answers: ["Ability to move in same direction for hours", "Ability to remain still even when pushed", "Ability to move so slowly you barely notice", "Ability to melt rocks with his x-ray vision"],
+    correctAnswer: "Ability to remain still even when pushed",
+    value: 4000,
+}, {
+    category: "National Parks and Naughty Bits",
+    question: "Which of the following national parks is named after a part of the female anatomy?", 
+    answers: ["Haleakala", "Mammoth Cave", "Grand Tetons", "Hot Springs"],
+    correctAnswer: "Grand Tetons",
+    value: 4000,
+}, {
+    category: "Killing Time and Killing Your Friends",
+    question: "Oh no! The miners are all dead, scouts keep getting blown up by bombs and the marshall was just killed by a spy while he was looking for a flag. What game is being played?", 
+    answers: ["Myst", "Capture the Flag", "Risk", "Stratego"],
+    correctAnswer: "Stratego",
+    value: 4000,
+}, {
+    category: "Funky Trash",
+    question: "A lava lamp from the 70s. A Meg doll from Family Guy. A bunch of black swan feathers.  Whose trash is this?", 
+    answers: ["Seth MacFarlane's", "Natalie Portman's", "Mila Kunis's", "Kim Kardashian's"],
+    correctAnswer: "Mila Kunis's",
+    value: 3000,
+}, {
+    category: "Medieval Flying Rodents",
+    question: "If Batman went through the proper medieval knighthood training, what would he be called in the LAST stage before becoming The Dark Knight?", 
+    answers: [ "The Dark Viscount", "The Dark Cavalier", "The Dark Squire", "The Twilight Farrier"],
+    correctAnswer: "The Dark Squire",
+    value: 1000,
+}, {
+    category: "Appropriate Attire",
+    question: "Who would be able to shop at a store with a “No Shirt, No Shoes, No Service” policy?", 
+    answers: ["Heffer Wolfe", "SpongeBob SquarePants", "Conan the Barbarian", "Donald Duck"],
+    correctAnswer: "SpongeBob SquarePants",
+    value: 2000,
+}, 
+// 10 questions
+]
+
 // Create an object to hold all game logic
 var triviaGameObj = {
 
