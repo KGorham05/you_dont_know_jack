@@ -2,7 +2,7 @@
 
 // Create Question Array
 // Need 63 categories to not have any repeats in a 21 q game
-var sourceArray = [{
+var testArray = [{
     category: "Sports",
     question: "Who wore #33 for the Celtics?",
     answers: ["I did", "You did", "Bill Russell", "Larry Bird"],
@@ -132,68 +132,179 @@ var sourceArray = [{
 
 ];
 
-var ydkjArray = [{
+var sourceArray = [{
+// 1
     category: "Hey Where are you Sticking that Hand?",
     question: "Which of the following is a Sesame Street muppet inspired by a real person?",
     answers: ["Senator Walter Mongoose", "Red Spotted Newt Gingrich", "H. Ross Parrot", "Mayor Ed Conch"],
     correctAnswer: "H. Ross Parrot",
     value: 2000,
-}, {
+},
+// 2
+{
     category: "So Bad, They're Not Even Good",
     question: 'If the band responsible for "White Rabbit" and "Somebody to Love" were combined with a disaster relief film, what might they be called?',
-    answers: ["They Might be Ishtar", "The Beastie Boy in the plastic bubble", "Jefferson Airport '77", "Queen is on fire"],
+    answers: ["They Might be Ishtar", "The Beastie Boy in the Plastic Bubble", "Jefferson Airport '77", "The Beatles Have Eaten The Crops"],
     correctAnswer: "Jefferson Airport '77",
     value: 2000,
-}, {
+}, 
+// 3
+{
     category: "I'm a Lucky Dog",
     question: 'Which of the following questions, if asked by you, would be "rhetorical?"', 
     answers: ["How much is this costing you?", "Can I have your autograph?", "Who wouldn't want to be me right now?", "Do you have any diseases?"],
     correctAnswer: "Who wouldn't want to be me right now?",
     value: 1000,
-}, {
+}, 
+// 4
+{
     category: "When Cooks Go Insane",
     question: "Which particular element of your meal contains the highest percentage of water?", 
     answers: ["The thousand island dressing", "The cooked spaghetti", "The roasted raccoon", "The 100 proof whisky"],
     correctAnswer: "The cooked spaghetti",
     value: 1000,
-}, {
+}, 
+// 5
+{
     category: "A Hero for the '90's",
     question: `Let's say D.C. comics introduced a new hero named "Inertia Man." Of the following, which superhero power would you expect him to be LACKING?`, 
     answers: ["Ability to move in same direction for hours", "Ability to remain still even when pushed", "Ability to move so slowly you barely notice", "Ability to melt rocks with his x-ray vision"],
     correctAnswer: "Ability to remain still even when pushed",
     value: 4000,
-}, {
+}, 
+// 6
+{
     category: "National Parks and Naughty Bits",
     question: "Which of the following national parks is named after a part of the female anatomy?", 
     answers: ["Haleakala", "Mammoth Cave", "Grand Tetons", "Hot Springs"],
     correctAnswer: "Grand Tetons",
     value: 4000,
-}, {
+}, 
+// 7
+{
     category: "Killing Time and Killing Your Friends",
     question: "Oh no! The miners are all dead, scouts keep getting blown up by bombs and the marshall was just killed by a spy while he was looking for a flag. What game is being played?", 
     answers: ["Myst", "Capture the Flag", "Risk", "Stratego"],
     correctAnswer: "Stratego",
     value: 4000,
-}, {
+}, 
+// 8
+{
     category: "Funky Trash",
     question: "A lava lamp from the 70s. A Meg doll from Family Guy. A bunch of black swan feathers.  Whose trash is this?", 
     answers: ["Seth MacFarlane's", "Natalie Portman's", "Mila Kunis's", "Kim Kardashian's"],
     correctAnswer: "Mila Kunis's",
     value: 3000,
-}, {
+}, 
+// 9
+{
     category: "Medieval Flying Rodents",
     question: "If Batman went through the proper medieval knighthood training, what would he be called in the LAST stage before becoming The Dark Knight?", 
     answers: [ "The Dark Viscount", "The Dark Cavalier", "The Dark Squire", "The Twilight Farrier"],
     correctAnswer: "The Dark Squire",
     value: 1000,
-}, {
+}, 
+// 10 
+{
     category: "Appropriate Attire",
     question: "Who would be able to shop at a store with a “No Shirt, No Shoes, No Service” policy?", 
     answers: ["Heffer Wolfe", "SpongeBob SquarePants", "Conan the Barbarian", "Donald Duck"],
     correctAnswer: "SpongeBob SquarePants",
     value: 2000,
 }, 
-// 10 questions
+// 11
+{
+    category: "Fairy Tales & Fakin' It",
+    question: `In a scandal that rocks the forest, the Three Bears allege that Goldilocks's hair is really made of "fool's gold." They say a better name for Goldilocks would be what?`, 
+    answers: ["Obsidianlocks", "Pyritelocks", "Quartzlocks", "Sulfurlocks"],
+    correctAnswer: "Pyritelocks",
+    value: 1000,
+}, 
+// 12
+{
+    category: "Ho, Ho, Who the Hell Are You?",
+    question: "According to Pennsylvania Dutch tradition, if it's New Years Eve and you come downstairs to find a fat man leaving cookies on a plate, don't bludgeon him with an iron poker because he is:", 
+    answers: [ `Santa's brother, "Bells"`, "Santa Claus, giving back cookies he disliked", "Grindledorf the Pastry Elf", "Father Time"],
+    correctAnswer: `Santa's brother, "Bells"`,
+    value: 2000,
+}, 
+// 13
+{
+    category: `Sci-Fi "Gilligan's Island"`,
+    question: `If Gilligan said that once the Minnow is repaired, he'd like to sail around the "islands of Langerhans," the Professor would tell him he'd like to be:`, 
+    answers: ["On Mars", `a character in "Guilliver's Travels"`, "microscopic", "on Earth around three million B.C."],
+    correctAnswer: "microscopic",
+    value: 2000,
+},  
+// 14
+{
+    category: "A Boy & His Tiger",
+    question: "Calvin : Hobbes ::", 
+    answers: ["Garfield : Jon", "Charlie : Snoopy", "Timmy : Lassie", "Christopher : Pooh"],
+    correctAnswer: "Christopher : Pooh",
+    value: 2000,
+},  
+// 15
+{
+    category: "It's Alive!",
+    question: `Which of these novelty "pets" are real living animals?`, 
+    answers: ["Pet Rock", "Chia Pet", "Shrinky Dinks", "Sea Monkeys"],
+    correctAnswer: "Sea Monkeys",
+    value: 1000,
+}, 
+// 16
+{
+    category: "Inexperienced Land Masses",
+    question: "Why are the Virgin Islands so named?", 
+    answers: ["They're ugly", "They were named for the state of Virginia", "They were named for Queen Virginia", "They were named for Queen Elizabeth"],
+    correctAnswer: "They were named for Queen Elizabeth",
+    value: 3000,
+},
+// 17
+{
+    category: "Cable Networks & Irrational Numbers",
+    question: `So viewers can find it more easily, your cable company has moved the entertainment network E! to channel "e." Based on its value in mathematics, where would you expect to find channel "e"?`, 
+    answers: ["between channels 1 and 2", "between channels 2 and 3", "between channels 6 and 7", "between channels 14 and 15"],
+    correctAnswer: "between channels 2 and 3",
+    value: 3000,
+},
+// 18
+{
+    category: "Dairy Treats & Digestive Tracts",
+    question: `If Dairy Queen added animal parts to its list of desserts, which of the following could NOT be in a "Gizzard Blizzard" because the animal in question does NOT possess a gizzard?`, 
+    answers: ["an ostrich", "a horned toad", "a crocodile", "an earthworm"],
+    correctAnswer: "a horned toad",
+    value: 3000,
+},
+// 19
+{
+    category: "Myths, Infomercials & Other Outright Lies",
+    question: "If the mythological Greek princess Atalanta were alive, well and doing infomercials today, what product would she most likely be pitching?", 
+    answers: ["amazing electric hair clippers", "incredible fitness products", "astonishing real estate sales tips", "miraculous beauty creams"],
+    correctAnswer: "incredible fitness products",
+    value: 2000,
+},
+// 20
+{
+    category: "Amateur Sleuths in TV & Literature",
+    question: `They were brothers that solved mysteries, the main characters in a bunch of books, and there was a TV show starring the brother of that guy on "The Partridge Family." Who were they?`, 
+    answers: ["Bobbsey Twins", "Drew Brothers", "Hardy Boys", "Holmes & Watson"],
+    correctAnswer: "Hardy Boys",
+    value: 1000,
+},
+// 21
+{
+    category: "The Wizard of Oz as a Diplomat",
+    question: "If the U.N. voted to accept the countries of Oz as new members which would NOT have an ambassador seated at a general assembly?", 
+    answers: ["Lollipop Country", "Munchkin Country", "Gillikin Country", "Winkie Country"],
+    correctAnswer: "Lollipop Country",
+    value: 3000,
+},
+// 22
+// 23
+// 24
+// 25
+
 ]
 
 // Create an object to hold all game logic
@@ -757,5 +868,11 @@ triviaGameObj.setupGame();
 
     // is it better to turn on/off multiple event listeners throughout the game, or would it be better to use variables to track the state of the game we're in and trigger different key events - or order and use stopPropogation
     // if the user score is negative, change the text color to red. 
+
+// JACK _ BOX
+
+// Real Time Multiplayer Version 
+    // Use your phone to answer questions 
+    // 
 
     
