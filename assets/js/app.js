@@ -221,13 +221,15 @@ var sourceArray = [{
     value: 1000,
 }, 
 // 12
+
+// Why does putting a comma into the answer and question string break this strictly equal comparison??
 {
     category: "Ho, Ho, Who the Hell Are You?",
-    question: "According to Pennsylvania Dutch tradition, if it's New Years Eve and you come downstairs to find a fat man leaving cookies on a plate, don't bludgeon him with an iron poker because he is:", 
-    answers: [ `Santa's brother, "Bells"`, "Santa Claus, giving back cookies he disliked", "Grindledorf the Pastry Elf", "Father Time"],
-    correctAnswer: `Santa's brother, "Bells"`,
+    question: "According to Pennsylvania Dutch tradition, if it's New Years Eve and you come downstairs to find a fat man leaving cookies on a plate, don't bludgeon him with an iron poker because he is:",
+    answers: ["Santa's Brother Bells", "Santa Claus, giving back cookies he disliked", "Grindledorf the Pastry Elf", "Father Time"],
+    correctAnswer: "Santa's Brother Bells",
     value: 2000,
-}, 
+},
 // 13
 {
     category: `Sci-Fi "Gilligan's Island"`,
@@ -301,11 +303,12 @@ var sourceArray = [{
     value: 3000,
 },
 // 22
+
 // 23
 // 24
 // 25
 
-]
+];
 
 // Create an object to hold all game logic
 var triviaGameObj = {
@@ -366,7 +369,6 @@ var triviaGameObj = {
 
     },
 
-
     changeNumPlayers: function () {
         if ($("#select-one-player").hasClass('current-choice')) {
             $("#select-one-player").removeClass('current-choice');
@@ -421,8 +423,9 @@ var triviaGameObj = {
         $("#input-player-name").removeClass('hide');
         // listen for ENTER btn
         $(document).on('keydown', function (e) {
-
+            
             if (e.which == 13) {
+                e.preventDefault();
                 // check for empty input
                 if ($("#name-input").val().trim().length < 1) {
                     alert('You must input a name!');
@@ -845,6 +848,8 @@ triviaGameObj.setupGame();
         // show final score
         // generate restart game button
 
+// Adjust the timing for all automatic screen progressions
+
 // ***Stretch Goals***
 
     // Play audio clip of Question being read aloud - have timer start at audio clip end
@@ -873,6 +878,7 @@ triviaGameObj.setupGame();
 
 // Real Time Multiplayer Version 
     // Use your phone to answer questions 
-    // 
+    // Host view + participant view 
+    // Make the questions / logo / components customizable 
 
     
