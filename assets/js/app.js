@@ -132,181 +132,182 @@ var testArray = [{
 
 ];
 
-var sourceArray = [{
-// 1
-    category: "Hey Where are you Sticking that Hand?",
-    question: "Which of the following is a Sesame Street muppet inspired by a real person?",
-    answers: ["Senator Walter Mongoose", "Red Spotted Newt Gingrich", "H. Ross Parrot", "Mayor Ed Conch"],
-    correctAnswer: "H. Ross Parrot",
-    value: 2000,
-},
-// 2
-{
-    category: "So Bad, They're Not Even Good",
-    question: 'If the band responsible for "White Rabbit" and "Somebody to Love" were combined with a disaster relief film, what might they be called?',
-    answers: ["They Might be Ishtar", "The Beastie Boy in the Plastic Bubble", "Jefferson Airport '77", "The Beatles Have Eaten The Crops"],
-    correctAnswer: "Jefferson Airport '77",
-    value: 2000,
-}, 
-// 3
-{
-    category: "I'm a Lucky Dog",
-    question: 'Which of the following questions, if asked by you, would be "rhetorical?"', 
-    answers: ["How much is this costing you?", "Can I have your autograph?", "Who wouldn't want to be me right now?", "Do you have any diseases?"],
-    correctAnswer: "Who wouldn't want to be me right now?",
-    value: 1000,
-}, 
-// 4
-{
-    category: "When Cooks Go Insane",
-    question: "Which particular element of your meal contains the highest percentage of water?", 
-    answers: ["The thousand island dressing", "The cooked spaghetti", "The roasted raccoon", "The 100 proof whisky"],
-    correctAnswer: "The cooked spaghetti",
-    value: 1000,
-}, 
-// 5
-{
-    category: "A Hero for the '90's",
-    question: `Let's say D.C. comics introduced a new hero named "Inertia Man." Of the following, which superhero power would you expect him to be LACKING?`, 
-    answers: ["Ability to move in same direction for hours", "Ability to remain still even when pushed", "Ability to move so slowly you barely notice", "Ability to melt rocks with his x-ray vision"],
-    correctAnswer: "Ability to remain still even when pushed",
-    value: 4000,
-}, 
-// 6
-{
-    category: "National Parks and Naughty Bits",
-    question: "Which of the following national parks is named after a part of the female anatomy?", 
-    answers: ["Haleakala", "Mammoth Cave", "Grand Tetons", "Hot Springs"],
-    correctAnswer: "Grand Tetons",
-    value: 4000,
-}, 
-// 7
-{
-    category: "Killing Time and Killing Your Friends",
-    question: "Oh no! The miners are all dead, scouts keep getting blown up by bombs and the marshall was just killed by a spy while he was looking for a flag. What game is being played?", 
-    answers: ["Myst", "Capture the Flag", "Risk", "Stratego"],
-    correctAnswer: "Stratego",
-    value: 4000,
-}, 
-// 8
-{
-    category: "Funky Trash",
-    question: "A lava lamp from the 70s. A Meg doll from Family Guy. A bunch of black swan feathers.  Whose trash is this?", 
-    answers: ["Seth MacFarlane's", "Natalie Portman's", "Mila Kunis's", "Kim Kardashian's"],
-    correctAnswer: "Mila Kunis's",
-    value: 3000,
-}, 
-// 9
-{
-    category: "Medieval Flying Rodents",
-    question: "If Batman went through the proper medieval knighthood training, what would he be called in the LAST stage before becoming The Dark Knight?", 
-    answers: [ "The Dark Viscount", "The Dark Cavalier", "The Dark Squire", "The Twilight Farrier"],
-    correctAnswer: "The Dark Squire",
-    value: 1000,
-}, 
-// 10 
-{
-    category: "Appropriate Attire",
-    question: "Who would be able to shop at a store with a “No Shirt, No Shoes, No Service” policy?", 
-    answers: ["Heffer Wolfe", "SpongeBob SquarePants", "Conan the Barbarian", "Donald Duck"],
-    correctAnswer: "SpongeBob SquarePants",
-    value: 2000,
-}, 
-// 11
-{
-    category: "Fairy Tales & Fakin' It",
-    question: `In a scandal that rocks the forest, the Three Bears allege that Goldilocks's hair is really made of "fool's gold." They say a better name for Goldilocks would be what?`, 
-    answers: ["Obsidianlocks", "Pyritelocks", "Quartzlocks", "Sulfurlocks"],
-    correctAnswer: "Pyritelocks",
-    value: 1000,
-}, 
-// 12
+var sourceArray = [
+    {
+        // 1
+        category: "Hey Where are you Sticking that Hand?",
+        question: "Which of the following is a Sesame Street muppet inspired by a real person?",
+        answers: ["Senator Walter Mongoose", "Red Spotted Newt Gingrich", "H. Ross Parrot", "Mayor Ed Conch"],
+        correctAnswer: "H. Ross Parrot",
+        value: 2000,
+    },
+    // 2
+    {
+        category: "So Bad, They're Not Even Good",
+        question: 'If the band responsible for "White Rabbit" and "Somebody to Love" were combined with a disaster relief film, what might they be called?',
+        answers: ["They Might be Ishtar", "The Beastie Boy in the Plastic Bubble", "Jefferson Airport '77", "The Beatles Have Eaten The Crops"],
+        correctAnswer: "Jefferson Airport '77",
+        value: 2000,
+    },
+    // 3
+    {
+        category: "I'm a Lucky Dog",
+        question: 'Which of the following questions, if asked by you, would be "rhetorical?"',
+        answers: ["How much is this costing you?", "Can I have your autograph?", "Who wouldn't want to be me right now?", "Do you have any diseases?"],
+        correctAnswer: "Who wouldn't want to be me right now?",
+        value: 1000,
+    },
+    // 4
+    {
+        category: "When Cooks Go Insane",
+        question: "Which particular element of your meal contains the highest percentage of water?",
+        answers: ["The thousand island dressing", "The cooked spaghetti", "The roasted raccoon", "The 100 proof whisky"],
+        correctAnswer: "The cooked spaghetti",
+        value: 1000,
+    },
+    // 5
+    {
+        category: "A Hero for the '90's",
+        question: `Let's say D.C. comics introduced a new hero named "Inertia Man." Of the following, which superhero power would you expect him to be LACKING?`,
+        answers: ["Ability to move in same direction for hours", "Ability to remain still even when pushed", "Ability to move so slowly you barely notice", "Ability to melt rocks with his x-ray vision"],
+        correctAnswer: "Ability to remain still even when pushed",
+        value: 4000,
+    },
+    // 6
+    {
+        category: "National Parks and Naughty Bits",
+        question: "Which of the following national parks is named after a part of the female anatomy?",
+        answers: ["Haleakala", "Mammoth Cave", "Grand Tetons", "Hot Springs"],
+        correctAnswer: "Grand Tetons",
+        value: 4000,
+    },
+    // 7
+    {
+        category: "Killing Time and Killing Your Friends",
+        question: "Oh no! The miners are all dead, scouts keep getting blown up by bombs and the marshall was just killed by a spy while he was looking for a flag. What game is being played?",
+        answers: ["Myst", "Capture the Flag", "Risk", "Stratego"],
+        correctAnswer: "Stratego",
+        value: 4000,
+    },
+    // 8
+    {
+        category: "Funky Trash",
+        question: "A lava lamp from the 70s. A Meg doll from Family Guy. A bunch of black swan feathers.  Whose trash is this?",
+        answers: ["Seth MacFarlane's", "Natalie Portman's", "Mila Kunis's", "Kim Kardashian's"],
+        correctAnswer: "Mila Kunis's",
+        value: 3000,
+    },
+    // 9
+    {
+        category: "Medieval Flying Rodents",
+        question: "If Batman went through the proper medieval knighthood training, what would he be called in the LAST stage before becoming The Dark Knight?",
+        answers: ["The Dark Viscount", "The Dark Cavalier", "The Dark Squire", "The Twilight Farrier"],
+        correctAnswer: "The Dark Squire",
+        value: 1000,
+    },
+    // 10 
+    {
+        category: "Appropriate Attire",
+        question: "Who would be able to shop at a store with a “No Shirt, No Shoes, No Service” policy?",
+        answers: ["Heffer Wolfe", "SpongeBob SquarePants", "Conan the Barbarian", "Donald Duck"],
+        correctAnswer: "SpongeBob SquarePants",
+        value: 2000,
+    },
+    // 11
+    {
+        category: "Fairy Tales & Fakin' It",
+        question: `In a scandal that rocks the forest, the Three Bears allege that Goldilocks's hair is really made of "fool's gold." They say a better name for Goldilocks would be what?`,
+        answers: ["Obsidianlocks", "Pyritelocks", "Quartzlocks", "Sulfurlocks"],
+        correctAnswer: "Pyritelocks",
+        value: 1000,
+    },
+    // 12
 
-// Why does putting a comma into the answer and question string break this strictly equal comparison??
-{
-    category: "Ho, Ho, Who the Hell Are You?",
-    question: "According to Pennsylvania Dutch tradition, if it's New Years Eve and you come downstairs to find a fat man leaving cookies on a plate, don't bludgeon him with an iron poker because he is:",
-    answers: ["Santa's Brother Bells", "Santa Claus, giving back cookies he disliked", "Grindledorf the Pastry Elf", "Father Time"],
-    correctAnswer: "Santa's Brother Bells",
-    value: 2000,
-},
-// 13
-{
-    category: `Sci-Fi "Gilligan's Island"`,
-    question: `If Gilligan said that once the Minnow is repaired, he'd like to sail around the "islands of Langerhans," the Professor would tell him he'd like to be:`, 
-    answers: ["On Mars", `a character in "Guilliver's Travels"`, "microscopic", "on Earth around three million B.C."],
-    correctAnswer: "microscopic",
-    value: 2000,
-},  
-// 14
-{
-    category: "A Boy & His Tiger",
-    question: "Calvin : Hobbes ::", 
-    answers: ["Garfield : Jon", "Charlie : Snoopy", "Timmy : Lassie", "Christopher : Pooh"],
-    correctAnswer: "Christopher : Pooh",
-    value: 2000,
-},  
-// 15
-{
-    category: "It's Alive!",
-    question: `Which of these novelty "pets" are real living animals?`, 
-    answers: ["Pet Rock", "Chia Pet", "Shrinky Dinks", "Sea Monkeys"],
-    correctAnswer: "Sea Monkeys",
-    value: 1000,
-}, 
-// 16
-{
-    category: "Inexperienced Land Masses",
-    question: "Why are the Virgin Islands so named?", 
-    answers: ["They're ugly", "They were named for the state of Virginia", "They were named for Queen Virginia", "They were named for Queen Elizabeth"],
-    correctAnswer: "They were named for Queen Elizabeth",
-    value: 3000,
-},
-// 17
-{
-    category: "Cable Networks & Irrational Numbers",
-    question: `So viewers can find it more easily, your cable company has moved the entertainment network E! to channel "e." Based on its value in mathematics, where would you expect to find channel "e"?`, 
-    answers: ["between channels 1 and 2", "between channels 2 and 3", "between channels 6 and 7", "between channels 14 and 15"],
-    correctAnswer: "between channels 2 and 3",
-    value: 3000,
-},
-// 18
-{
-    category: "Dairy Treats & Digestive Tracts",
-    question: `If Dairy Queen added animal parts to its list of desserts, which of the following could NOT be in a "Gizzard Blizzard" because the animal in question does NOT possess a gizzard?`, 
-    answers: ["an ostrich", "a horned toad", "a crocodile", "an earthworm"],
-    correctAnswer: "a horned toad",
-    value: 3000,
-},
-// 19
-{
-    category: "Myths, Infomercials & Other Outright Lies",
-    question: "If the mythological Greek princess Atalanta were alive, well and doing infomercials today, what product would she most likely be pitching?", 
-    answers: ["amazing electric hair clippers", "incredible fitness products", "astonishing real estate sales tips", "miraculous beauty creams"],
-    correctAnswer: "incredible fitness products",
-    value: 2000,
-},
-// 20
-{
-    category: "Amateur Sleuths in TV & Literature",
-    question: `They were brothers that solved mysteries, the main characters in a bunch of books, and there was a TV show starring the brother of that guy on "The Partridge Family." Who were they?`, 
-    answers: ["Bobbsey Twins", "Drew Brothers", "Hardy Boys", "Holmes & Watson"],
-    correctAnswer: "Hardy Boys",
-    value: 1000,
-},
-// 21
-{
-    category: "The Wizard of Oz as a Diplomat",
-    question: "If the U.N. voted to accept the countries of Oz as new members which would NOT have an ambassador seated at a general assembly?", 
-    answers: ["Lollipop Country", "Munchkin Country", "Gillikin Country", "Winkie Country"],
-    correctAnswer: "Lollipop Country",
-    value: 3000,
-},
-// 22
+    // Why does putting a comma into the answer and question string break this strictly equal comparison??
+    {
+        category: "Ho, Ho, Who the Hell Are You?",
+        question: "According to Pennsylvania Dutch tradition, if it's New Years Eve and you come downstairs to find a fat man leaving cookies on a plate, don't bludgeon him with an iron poker because he is:",
+        answers: ["Santa's Brother Bells", "Santa Claus, giving back cookies he disliked", "Grindledorf the Pastry Elf", "Father Time"],
+        correctAnswer: "Santa's Brother Bells",
+        value: 2000,
+    },
+    // 13
+    {
+        category: `Sci-Fi "Gilligan's Island"`,
+        question: `If Gilligan said that once the Minnow is repaired, he'd like to sail around the "islands of Langerhans," the Professor would tell him he'd like to be:`,
+        answers: ["On Mars", `a character in "Guilliver's Travels"`, "microscopic", "on Earth around three million B.C."],
+        correctAnswer: "microscopic",
+        value: 2000,
+    },
+    // 14
+    {
+        category: "A Boy & His Tiger",
+        question: "Calvin : Hobbes ::",
+        answers: ["Garfield : Jon", "Charlie : Snoopy", "Timmy : Lassie", "Christopher : Pooh"],
+        correctAnswer: "Christopher : Pooh",
+        value: 2000,
+    },
+    // 15
+    {
+        category: "It's Alive!",
+        question: `Which of these novelty "pets" are real living animals?`,
+        answers: ["Pet Rock", "Chia Pet", "Shrinky Dinks", "Sea Monkeys"],
+        correctAnswer: "Sea Monkeys",
+        value: 1000,
+    },
+    // 16
+    {
+        category: "Inexperienced Land Masses",
+        question: "Why are the Virgin Islands so named?",
+        answers: ["They're ugly", "They were named for the state of Virginia", "They were named for Queen Virginia", "They were named for Queen Elizabeth"],
+        correctAnswer: "They were named for Queen Elizabeth",
+        value: 3000,
+    },
+    // 17
+    {
+        category: "Cable Networks & Irrational Numbers",
+        question: `So viewers can find it more easily, your cable company has moved the entertainment network E! to channel "e." Based on its value in mathematics, where would you expect to find channel "e"?`,
+        answers: ["between channels 1 and 2", "between channels 2 and 3", "between channels 6 and 7", "between channels 14 and 15"],
+        correctAnswer: "between channels 2 and 3",
+        value: 3000,
+    },
+    // 18
+    {
+        category: "Dairy Treats & Digestive Tracts",
+        question: `If Dairy Queen added animal parts to its list of desserts, which of the following could NOT be in a "Gizzard Blizzard" because the animal in question does NOT possess a gizzard?`,
+        answers: ["an ostrich", "a horned toad", "a crocodile", "an earthworm"],
+        correctAnswer: "a horned toad",
+        value: 3000,
+    },
+    // 19
+    {
+        category: "Myths, Infomercials & Other Outright Lies",
+        question: "If the mythological Greek princess Atalanta were alive, well and doing infomercials today, what product would she most likely be pitching?",
+        answers: ["amazing electric hair clippers", "incredible fitness products", "astonishing real estate sales tips", "miraculous beauty creams"],
+        correctAnswer: "incredible fitness products",
+        value: 2000,
+    },
+    // 20
+    {
+        category: "Amateur Sleuths in TV & Literature",
+        question: `They were brothers that solved mysteries, the main characters in a bunch of books, and there was a TV show starring the brother of that guy on "The Partridge Family." Who were they?`,
+        answers: ["Bobbsey Twins", "Drew Brothers", "Hardy Boys", "Holmes & Watson"],
+        correctAnswer: "Hardy Boys",
+        value: 1000,
+    },
+    // 21
+    {
+        category: "The Wizard of Oz as a Diplomat",
+        question: "If the U.N. voted to accept the countries of Oz as new members which would NOT have an ambassador seated at a general assembly?",
+        answers: ["Lollipop Country", "Munchkin Country", "Gillikin Country", "Winkie Country"],
+        correctAnswer: "Lollipop Country",
+        value: 3000,
+    },
+    // 22
 
-// 23
-// 24
-// 25
+    // 23
+    // 24
+    // 25
 
 ];
 
@@ -328,7 +329,7 @@ var triviaGameObj = {
     playerOneNameColleted: false,
     multiplayerGame: false,
     playerOneTurn: true,
-    curPlayer: 'player one',
+    curPlayer: "",
     timer: null,
     questionArray: [...sourceArray],
 
@@ -336,19 +337,19 @@ var triviaGameObj = {
 
         // update the timer text on the page
         $("#count-down").text(triviaGameObj.counter - 1);
-       
+
         // decrement the counter
         triviaGameObj.counter--;
 
         if (triviaGameObj.counter === 0) {
-            
+
             clearInterval(triviaGameObj.timer);
             // stop any key listener events
             $(document).off("keydown");
 
             // update result text element
 
-            setTimeout(function() {
+            setTimeout(function () {
                 $("#result-text").text("Out of Time!");
                 $("#result-text").removeClass("hide");
                 // reveal the correct answer 
@@ -358,11 +359,11 @@ var triviaGameObj = {
             // check for gameOver
             // working gameOver function 
             if (triviaGameObj.questionCounter === triviaGameObj.numQuestions + 1) {
-                setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
+                setTimeout(function () { $("#question-screen").addClass("hide") }, 4000);
                 setTimeout(triviaGameObj.gameOver, 4000);
             } else {
                 // hide this screen
-                setTimeout(function() {$("#question-screen").addClass("hide")}, 8 * 1000);
+                setTimeout(function () { $("#question-screen").addClass("hide") }, 8 * 1000);
                 setTimeout(triviaGameObj.showQuestionCounterScreen, 8 * 1000);
             };
         };
@@ -379,7 +380,7 @@ var triviaGameObj = {
         }
     },
 
-    setupGame: function() {
+    setupGame: function () {
         // reveal the setup-game-screen
         $("#setup-game-screen").removeClass("hide");
 
@@ -395,7 +396,7 @@ var triviaGameObj = {
             else if (e.which == 40) {
                 triviaGameObj.changeNumPlayers();
             }
-            
+
             // listen for ENTER 
             else if (e.which == 13) {
                 triviaGameObj.gameHasStarted = true;
@@ -423,7 +424,7 @@ var triviaGameObj = {
         $("#input-player-name").removeClass('hide');
         // listen for ENTER btn
         $(document).on('keydown', function (e) {
-            
+
             if (e.which == 13) {
                 e.preventDefault();
                 // check for empty input
@@ -465,7 +466,7 @@ var triviaGameObj = {
         // hide previous screen, show this screen        
         $("#input-player-name").addClass('hide');
         $("#select-game-length").removeClass('hide');
-        
+
         // listen for 7 or 21 question game selection
         $(document).on('keydown', function (e) {
 
@@ -496,7 +497,7 @@ var triviaGameObj = {
 
     },
 
-    displayMultiplayerInstructions: function() {
+    displayMultiplayerInstructions: function () {
         // check if multiplayer game
         if (triviaGameObj.multiplayerGame) {
             // display the multiplayer instructions
@@ -505,7 +506,7 @@ var triviaGameObj = {
             // after 7 seconds, display the questionCounterScreen
             setTimeout(triviaGameObj.showQuestionCounterScreen, 7 * 1000);
 
-        } 
+        }
         // if it's single player progress game to showQuestionCounterScreen
         else {
             triviaGameObj.showQuestionCounterScreen();
@@ -540,7 +541,7 @@ var triviaGameObj = {
     },
 
     genCategories: function () {
-        
+
         // remove previous categories from the display 
         $("#categories-display").text("");
         // hide current ? screen
@@ -580,7 +581,7 @@ var triviaGameObj = {
                 $("#categories-display").append(turn);
             };
         }
-             
+
         // select a category screen 
         $(document).on('keydown', function (e) {
             // listen for the user to press 1, 2, or 3
@@ -609,12 +610,12 @@ var triviaGameObj = {
     displayPlayerScores: function () {
         // get rid of the previous scores
         $(".scoreboard").html("");
-        
+
         // set the text of player 1's score
         var pOneScore = $("<h1>");
         pOneScore.text(`${triviaGameObj.playerOneName}'s Score: $ ${triviaGameObj.playerOneScore.toString()}`);
         $(".scoreboard").append(pOneScore);
-        
+
         // if its a 2 player game
         if (triviaGameObj.multiplayerGame) {
 
@@ -624,11 +625,11 @@ var triviaGameObj = {
             // append player 2 score to the scoreboard 
             $(".scoreboard").append(pTwoScore);
         }
-        
+
     },
 
     displayQuestion: function () {
-        
+
         // remove the previous question elements if they exist
         $("#question-screen").empty();
         // build the question number
@@ -638,8 +639,8 @@ var triviaGameObj = {
         var gameClock = $("<div id='count-down'>20</div>");
         $("#question-screen").append(gameClock);
         // Set question timer, display countdown
-        triviaGameObj.counter    = 20;
-        triviaGameObj.timer      = setInterval(triviaGameObj.countdown, 1000);
+        triviaGameObj.counter = 20;
+        triviaGameObj.timer = setInterval(triviaGameObj.countdown, 1000);
         // build the question text
         var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
         $("#question-screen").append(headEle);
@@ -662,74 +663,102 @@ var triviaGameObj = {
             // append it to the screen 
             $("#question-screen").append(answerEle);
         };
-        
-        
+
+
         // build the question value
         // create an element to display curValue
         var cashDiv = $("<div>").text(`This question is worth $ ${triviaGameObj.curValue}`);
         $("#question-screen").append(cashDiv);
-        
+
         // show this div once all pieces are appended
-        $("#question-screen").removeClass('hide');
-        
-        // listen for the user to press 1, 2, 3, or 4
-        $(document).on('keydown', function (e) {
+        $("#question-screen").removeClass("hide");
+
+        // if it's a multiplayer game:
+        if (triviaGameObj.multiplayerGame) {
+            $(document).on("keydown", function (e) {
+                // if q set curPlayer to player one and listen for choice
+                // ** TO DO ** Highlight the user that buzzed in some how visually  
+                if (e.key === "q") {
+                    // turn off event listener
+                    $(document).off("keydown");
+                    triviaGameObj.curPlayer = "player one";
+                    triviaGameObj.listenCheckAnswer();
+                };
+                // if p set curPlayer to player two and listen for choice
+                if (e.key === "p") {
+                    // turn off event listener
+                    $(document).off("keydown");
+                    triviaGameObj.curPlayer = "player two";
+                    triviaGameObj.listenCheckAnswer();
+                };
+
+            });
+        } else {
+            triviaGameObj.curPlayer = "player one"
+            triviaGameObj.listenCheckAnswer();
+        }
+        // listen for the user to press q or p
+    },
+
+    listenCheckAnswer: function () {
+        // listen and check answer function
+        $(document).on("keydown", function (e) {
 
             if (e.key == 1 || e.key == 2 || e.key == 3 || e.key == 4) {
-                
+
                 // turn off the event listener
-                $(document).off('keydown');
+                $(document).off("keydown");
                 // add the current-choice class to whichever answer was chosen
-                $(`#a${e.key}`).addClass('current-choice');
+                $(`#a${e.key}`).addClass("current-choice");
 
                 // target the answer that corresponds to the key pressed
                 var userGuess = $(`#a${e.key}`).text();
-                
+
                 // turn it into an array
                 var userArray = userGuess.split("");
                 // remove the extra characters
                 var formattedArray = userArray.slice(3, userArray.length);
                 // userArray.splice(0, 3); 
                 // var formattedArray = userArray;
-                
+
                 var answerString = formattedArray.toString().replace(/,/g, "");
 
                 // Stop the timer
                 clearInterval(triviaGameObj.timer);
-                
+
                 // compare the picked answer to the correct answer
                 // if the answer is correct
                 if (answerString === triviaGameObj.curCorrectAnswer) {
-                    
+
                     // display 'Correct!' on the page
                     $("#result-text").text("Correct!");
                     $("#result-text").removeClass("hide");
                     // update the currentPlayer's score 
-                    
+
                     // turn this block into a function   
-                    if (triviaGameObj.curPlayer === 'player one') {
+                    if (triviaGameObj.curPlayer === "player one") {
                         triviaGameObj.playerOneScore = triviaGameObj.playerOneScore + triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     } else {
                         triviaGameObj.playerTwoScore = triviaGameObj.playerTwoScore + triviaGameObj.curValue;
                         triviaGameObj.displayPlayerScores();
                     };
-                    
-                    
+
+
                     // check for game over condition
                     if (triviaGameObj.questionCounter === triviaGameObj.numQuestions + 1) {
-                        
-                        setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
+
+                        setTimeout(function () { $("#question-screen").addClass("hide") }, 4000);
                         setTimeout(triviaGameObj.gameOver, 4000);
                     } else {
                         // hide this screen
-                        setTimeout(function() {$("#question-screen").addClass("hide")}, 4000);
+                        setTimeout(function () { $("#question-screen").addClass("hide") }, 4000);
                         setTimeout(triviaGameObj.showQuestionCounterScreen, 4000);
                     };
-                } 
+                }
                 // if the answer is incorrect
                 else {
-                    
+
                     // display 'Incorrect!' on the page
                     $("#result-text").text("Incorrect! The correct answer was:");
                     $("#result-text").removeClass("hide");
@@ -737,9 +766,9 @@ var triviaGameObj = {
                     // reveal the correct answer 
                     setTimeout(function () {
                         $(`#a${e.key}`).removeClass('current-choice');
-                        $(".correct-answer").addClass("correct-answer-border");  
+                        $(".correct-answer").addClass("correct-answer-border");
                     }, 1000);
-                    
+
 
                     // subtract the question value from user's score
                     if (triviaGameObj.curPlayer === 'player one') {
@@ -752,32 +781,31 @@ var triviaGameObj = {
 
                     // if this was the last question 
                     if (triviaGameObj.questionCounter === triviaGameObj.numQuestions + 1) {
-                        
-                        setTimeout(function() {$("#question-screen").addClass("hide")}, 7 * 1000);
+
+                        setTimeout(function () { $("#question-screen").addClass("hide") }, 7 * 1000);
                         setTimeout(triviaGameObj.gameOver, 7 * 1000);
                     } else {
                         // hide this screen
-                        setTimeout(function() {$("#question-screen").addClass("hide")}, 6 * 1000);
+                        setTimeout(function () { $("#question-screen").addClass("hide") }, 6 * 1000);
                         setTimeout(triviaGameObj.showQuestionCounterScreen, 6 * 1000);
                     };
-                }  
+                }
             }
         });
-    
     },
 
-    gameOver: function() {
+    gameOver: function () {
         // clear the previous gameover screen 
         $("#game-over-screen").empty();
         // display text that says "GAME OVER"
         var gameOverText = $("<p id='game-over-text'>Game Over!</p>");
         // TO DO - if the game is multiplayer, declare a winner
-        
+
         // Display the final player scores
         var scoreboard = $("<div class='scoreboard'>");
         // create a button to restart the game
         var restartBtn = $("<button id='restart-btn'>Restart</button>");
-        
+
         $("#game-over-screen").append(gameOverText, scoreboard, restartBtn);
         triviaGameObj.displayPlayerScores();
         // reveal the game-over-screen
@@ -786,7 +814,7 @@ var triviaGameObj = {
         $(document).on('click', '#restart-btn', triviaGameObj.restartGame);
     },
 
-    restartGame: function() {
+    restartGame: function () {
         // hide the game over screen
         $("#game-over-screen").addClass("hide");
         // reset global variables to original state
@@ -881,4 +909,3 @@ triviaGameObj.setupGame();
     // Host view + participant view 
     // Make the questions / logo / components customizable 
 
-    
