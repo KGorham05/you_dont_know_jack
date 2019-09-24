@@ -806,7 +806,16 @@ var triviaGameObj = {
         // create a button to restart the game
         var restartBtn = $("<button id='restart-btn'>Restart</button>");
 
-        $("#game-over-screen").append(gameOverText, scoreboard, restartBtn);
+        if (triviaGameObj.multiplayerGame) {
+            var winningPlayer;
+            triviaGameObj.playerOneScore > triviaGameObj.playerTwoScore ? winningPlayer = triviaGameObj.playerOneName: winningPlayer = triviaGameObj.playerTwoName;
+            var winner = $("<div id='winner'>").text(`${winningPlayer} is the winner!`);
+            $("#game-over-screen").append(gameOverText, winner, scoreboard, restartBtn);
+        } else {
+            $("#game-over-screen").append(gameOverText, scoreboard, restartBtn);
+        }
+
+        
         triviaGameObj.displayPlayerScores();
         // reveal the game-over-screen
         $("#game-over-screen").removeClass("hide");
@@ -846,7 +855,7 @@ triviaGameObj.setupGame();
 
 
 // WORKING ON
-    // building the gameOver screen/function 
+    
 
 // TODO
     // if 2 players - show pic of game controls for 10 seconds (with skip btn)
@@ -854,27 +863,18 @@ triviaGameObj.setupGame();
     // If "q" is pressed, set currentPlayer to playerOne : if p currentPlayer = 2
 
 // If the answer is incorrect 
-    // Check for a 2nd player
-        // If there are 2 players playing
+    // and the game is multiplayer
+        // and both players haven't guessed incorrectly already 
             // Remove incorrect choice from the DOM
             // Continue timer 
             // Listen for select button
-            // If correct/incorrect - show it, update score variable, update score on the DOM
-    // If 1 player game - show correct answer
-        // Deduct score variable + update DOM  
-        // Check for game over condition - use question counter to trigger end of game
-
-// If the game continues... (check for game over after answer is input)
-    // Display next question screen -> 
 
 // If the game is over
     // if there are 2 players
         // display final scores 
         // display who won!
         // generate restart game button
-    // if there is 1 player
-        // show final score
-        // generate restart game button
+
 
 // Adjust the timing for all automatic screen progressions
 
