@@ -34,7 +34,7 @@ body {
 }
 
 #main-bg {
-    background: url('../nasa--hI5dX2ObAs-unsplash.jpg') no-repeat;  
+    background: url('../images/nasa--hI5dX2ObAs-unsplash.jpg') no-repeat;  
 }
 
 .current-choice {
@@ -108,7 +108,7 @@ body {
 }
 
 #start-game {
-    left: 646px;
+    left: 618px;
     font-size: 24px
 }
 
