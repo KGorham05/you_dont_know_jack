@@ -443,7 +443,7 @@ var triviaGameObj = {
                         // empty input field
                         $("#name-input").val("");
                         // update instructions to ask for player 2's name
-                        $("#input-name-instructions").text("Player Two, enter your name already!");
+                        $("#input-name-instructions").text("Player Two!");
                     }
                     // ELSE: progress to next screen 
                     else {
