@@ -16,6 +16,13 @@ body {
     display: flex;
 }
 
+/* .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+} */
+
 .center {
     align-items: center;
     justify-content: center;
@@ -40,10 +47,6 @@ body {
 
 #select-two-player {
     padding: 5px 20px 5px 20px;
-}
-
-#game-title {
-    font-size: 48px;    
 }
 
 .current-choice {
@@ -72,4 +75,16 @@ body {
 
 #seven #twenty-one {
     padding: 2px 2px 2px 2px;
+}
+
+.tilt {
+    transform: rotate(345deg);
+}
+
+#game-title {
+    font-size: 100px;   
+}
+
+#sub-title {
+    font-size: 36px;
 }

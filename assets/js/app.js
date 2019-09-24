@@ -806,6 +806,7 @@ var triviaGameObj = {
         // create a button to restart the game
         var restartBtn = $("<button id='restart-btn'>Restart</button>");
 
+        // if it is multiplayer game, declare a winner
         if (triviaGameObj.multiplayerGame) {
             var winningPlayer;
             triviaGameObj.playerOneScore > triviaGameObj.playerTwoScore ? winningPlayer = triviaGameObj.playerOneName: winningPlayer = triviaGameObj.playerTwoName;
@@ -813,8 +814,7 @@ var triviaGameObj = {
             $("#game-over-screen").append(gameOverText, winner, scoreboard, restartBtn);
         } else {
             $("#game-over-screen").append(gameOverText, scoreboard, restartBtn);
-        }
-
+        };
         
         triviaGameObj.displayPlayerScores();
         // reveal the game-over-screen
@@ -853,14 +853,12 @@ var triviaGameObj = {
 triviaGameObj.setupGame();
 
 
-
 // WORKING ON
-    
+    // styling/position     
 
 // TODO
-    // if 2 players - show pic of game controls for 10 seconds (with skip btn)
-    // If there are 2 players - listen for "q" or "p" to be pressed
-    // If "q" is pressed, set currentPlayer to playerOne : if p currentPlayer = 2
+
+// In a multiplayer game, if a user buzzes in, change styling to indicate who buzzed and can select an answer 
 
 // If the answer is incorrect 
     // and the game is multiplayer
@@ -869,11 +867,7 @@ triviaGameObj.setupGame();
             // Continue timer 
             // Listen for select button
 
-// If the game is over
-    // if there are 2 players
-        // display final scores 
-        // display who won!
-        // generate restart game button
+
 
 
 // Adjust the timing for all automatic screen progressions
