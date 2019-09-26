@@ -312,7 +312,9 @@ var triviaGameObj = {
                         // empty input field
                         $("#name-input").val("");
                         // update instructions to ask for player 2's name
-                        $("#current-player-text").text("Player Two!");
+                        $("#current-player-text").attr("class", "animated zoomIn");
+                        $("#current-player-text").text("Player Two");
+
                     }
                     // ELSE: progress to next screen 
                     else {

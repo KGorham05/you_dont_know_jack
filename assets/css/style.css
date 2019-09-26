@@ -116,12 +116,12 @@ body {
 
 #current-player-text {
     font-size: 88px;
-    margin-bottom: 48px;
+    margin-bottom: 20px;
 }
 
 #name-input-instructions {
     font-size: 64px;
-    margin-bottom: 48px;
+    margin-bottom: 30px;
 }
 
 #name-input {
