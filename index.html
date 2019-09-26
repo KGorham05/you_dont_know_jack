@@ -28,10 +28,12 @@
         </div>
 
         <div id="input-player-name" class="hide full-screen flex center f-column">
-            <form action="#">
-                <h1 id="input-name-instructions">Player One!</h1> <h1>Enter your primitive human name!</h1>
-                <input type="text" id="name-input">
-            </form>
+            <h1 id="current-player-text">Player One!</h1>
+            <h1 id="name-input-instructions">Enter your primitive human name!</h1>
+            <div class="cursor">
+                <input type="text" id="name-input" autofocus="autofocus" />
+                <i></i>
+            </div>
         </div>
 
         <div id="select-game-length" class="hide full-screen flex center">
@@ -56,9 +58,9 @@
         <div id="question-screen" class="hide full-screen flex center f-column"></div>
 
         <div id="game-over-screen" class="hide full-screen flex center f-column"></div>
-            
-        
-        
+
+
+
     </div>
 
     <!-- Link jQuery -->

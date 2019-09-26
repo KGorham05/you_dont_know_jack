@@ -45,17 +45,7 @@ body {
     border: 2px solid aqua;
 }
 
-#input-player-name {
-    text-align: center;
-}
 
-#name-input {
-    width: 100%;
-    margin-top: 10px;
-    height: 30px;
-    font-size: 24px;
-    text-align: center;
-}
 
 #select-game-length {
     font-size: 24px;
@@ -64,6 +54,8 @@ body {
 #seven #twenty-one {
     padding: 2px 2px 2px 2px;
 }
+
+/* Main Screen */
 
 .tilt {
     transform: rotate(350deg);
@@ -116,4 +108,27 @@ body {
     font-size: 175px;
 }
 
-/* Try Top Secret Font style for Main Text - Top Secret Stamp  */
+/* Input Player Names Screen */
+
+#input-player-name {
+    text-align: center;
+}
+
+#current-player-text {
+    font-size: 88px;
+    margin-bottom: 48px;
+}
+
+#name-input-instructions {
+    font-size: 64px;
+    margin-bottom: 48px;
+}
+
+#name-input {
+    margin-top: 10px;
+    height: 60px;
+    font-size: 48px;
+    text-align: center;
+    background: none;
+    border: 2px solid black;
+}

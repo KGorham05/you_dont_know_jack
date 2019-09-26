@@ -2,139 +2,10 @@
 
 // Create Question Array
 // Need 63 categories to not have any repeats in a 21 q game
-var testArray = [{
-    category: "Sports",
-    question: "Who wore #33 for the Celtics?",
-    answers: ["I did", "You did", "Bill Russell", "Larry Bird"],
-    correctAnswer: "Larry Bird",
-    value: 1000,
-}, {
-    category: "travel",
-    question: "Where in the world is Carmen San Diego?",
-    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
-    correctAnswer: "San Diego",
-    value: 2000,
-}, {
-    category: "Math",
-    question: "What is the airspeed velocity of an unladen swallow?",
-    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?",
-    value: 3000,
-}, {
-    category: "Fiction",
-    question: "What magical item is at the core of Harry Potter's wand?",
-    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
-    correctAnswer: "Phoenix Feather",
-    value: 4000,
-}, {
-    category: "travel",
-    question: "Where in the world is Carmen San Diego?",
-    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
-    correctAnswer: "San Diego",
-    value: 2000,
-}, {
-    category: "Math",
-    question: "What is the airspeed velocity of an unladen swallow?",
-    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?",
-    value: 3000,
-}, {
-    category: "Math",
-    question: "What is the airspeed velocity of an unladen swallow?",
-    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?",
-    value: 3000,
-}, {
-    category: "Fiction",
-    question: "What magical item is at the core of Harry Potter's wand?",
-    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
-    correctAnswer: "Phoenix Feather",
-    value: 4000,
-}, {
-    category: "travel",
-    question: "Where in the world is Carmen San Diego?",
-    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
-    correctAnswer: "San Diego",
-    value: 2000,
-}, {
-    category: "Math",
-    question: "What is the airspeed velocity of an unladen swallow?",
-    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?",
-    value: 3000,
-}, {
-    category: "Math",
-    question: "What is the airspeed velocity of an unladen swallow?",
-    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?",
-    value: 3000,
-}, {
-    category: "Fiction",
-    question: "What magical item is at the core of Harry Potter's wand?",
-    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
-    correctAnswer: "Phoenix Feather",
-    value: 4000,
-}, {
-    category: "travel",
-    question: "Where in the world is Carmen San Diego?",
-    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
-    correctAnswer: "San Diego",
-    value: 2000,
-}, {
-    category: "Math",
-    question: "What is the airspeed velocity of an unladen swallow?",
-    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?",
-    value: 3000,
-}, {
-    category: "Math",
-    question: "What is the airspeed velocity of an unladen swallow?",
-    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?",
-    value: 3000,
-}, {
-    category: "Fiction",
-    question: "What magical item is at the core of Harry Potter's wand?",
-    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
-    correctAnswer: "Phoenix Feather",
-    value: 4000,
-}, {
-    category: "travel",
-    question: "Where in the world is Carmen San Diego?",
-    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
-    correctAnswer: "San Diego",
-    value: 2000,
-}, {
-    category: "Math",
-    question: "What is the airspeed velocity of an unladen swallow?",
-    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?",
-    value: 3000,
-}, {
-    category: "Fiction",
-    question: "What magical item is at the core of Harry Potter's wand?",
-    answers: ["Unicorn Hair", "Dragon Heartstring", "Unicorn Hair", "Phoenix Feather"],
-    correctAnswer: "Phoenix Feather",
-    value: 4000,
-}, {
-    category: "travel",
-    question: "Where in the world is Carmen San Diego?",
-    answers: ["San Diego", "Gibberish", "Tunisia", "Space"],
-    correctAnswer: "San Diego",
-    value: 2000,
-}, {
-    category: "Math",
-    question: "What is the airspeed velocity of an unladen swallow?",
-    answers: ["Threve", "Well I don't know that", "Coconuts", "African or European?"],
-    correctAnswer: "African or European?",
-    value: 3000,
-}
-
-];
 
 var sourceArray = [
     {
-        // 1
+    // 1
         category: "Hey Where are you Sticking that Hand?",
         question: "Which of the following is a Sesame Street muppet inspired by a real person?",
         answers: ["Senator Walter Mongoose", "Red Spotted Newt Gingrich", "H. Ross Parrot", "Mayor Ed Conch"],
@@ -222,13 +93,11 @@ var sourceArray = [
         value: 1000,
     },
     // 12
-
-    // Why does putting a comma into the answer and question string break this strictly equal comparison??
     {
         category: "Ho, Ho, Who the Hell Are You?",
         question: "According to Pennsylvania Dutch tradition, if it's New Years Eve and you come downstairs to find a fat man leaving cookies on a plate, don't bludgeon him with an iron poker because he is:",
-        answers: ["Santa's Brother Bells", "Santa Claus, giving back cookies he disliked", "Grindledorf the Pastry Elf", "Father Time"],
-        correctAnswer: "Santa's Brother Bells",
+        answers: [`Santa's Brother "Bells"`, "Santa Claus, giving back cookies he disliked", "Grindledorf the Pastry Elf", "Father Time"],
+        correctAnswer: `Santa's Brother "Bells"`,
         value: 2000,
     },
     // 13
@@ -443,7 +312,7 @@ var triviaGameObj = {
                         // empty input field
                         $("#name-input").val("");
                         // update instructions to ask for player 2's name
-                        $("#input-name-instructions").text("Player Two!");
+                        $("#current-player-text").text("Player Two!");
                     }
                     // ELSE: progress to next screen 
                     else {
