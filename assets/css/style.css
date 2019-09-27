@@ -37,9 +37,7 @@ body {
     background: url('../images/nasa--hI5dX2ObAs-unsplash.jpg') no-repeat;  
 }
 
-.current-choice {
-    border: 2px solid fuchsia;
-}
+
 
 .correct-answer-border {
     border: 2px solid aqua;
@@ -51,9 +49,7 @@ body {
     font-size: 24px;
 }
 
-#seven #twenty-one {
-    padding: 2px 2px 2px 2px;
-}
+
 
 /* Main Screen */
 
@@ -115,12 +111,12 @@ body {
 }
 
 #current-player-text {
-    font-size: 88px;
+    font-size: 64px;
     margin-bottom: 20px;
 }
 
 #name-input-instructions {
-    font-size: 64px;
+    font-size: 48px;
     margin-bottom: 30px;
 }
 
@@ -131,4 +127,20 @@ body {
     text-align: center;
     background: none;
     border: 2px solid black;
+}
+
+/* Select Game Length Screen */
+
+#select-game-length h1 {
+    font-size: 48px;
+}
+
+.seven, .twenty-one {
+    padding: 5px 5px 5px 5px;
+    border: 2px solid transparent;
+}
+
+/* Keep this below .seven and .twenty-one so it's not overwritten */
+.current-choice {
+    border: 2px solid fuchsia;
 }

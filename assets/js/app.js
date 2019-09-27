@@ -342,12 +342,12 @@ var triviaGameObj = {
         $(document).on('keydown', function (e) {
 
             if (e.which >= 37 && e.which <= 40) {
-                if ($("#seven").hasClass('current-choice')) {
-                    $("#seven").removeClass('current-choice');
-                    $("#twenty-one").addClass('current-choice');
+                if ($(".seven").hasClass('current-choice')) {
+                    $(".seven").removeClass('current-choice');
+                    $(".twenty-one").addClass('current-choice');
                 } else {
-                    $("#twenty-one").removeClass('current-choice');
-                    $("#seven").addClass('current-choice');
+                    $(".twenty-one").removeClass('current-choice');
+                    $(".seven").addClass('current-choice');
                 }
             }
             else if (e.which == 13) {
