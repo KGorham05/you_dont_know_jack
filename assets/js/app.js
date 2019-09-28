@@ -396,7 +396,7 @@ var triviaGameObj = {
         // increment the current question variable
         triviaGameObj.questionCounter++;
         // wait 4 seconds, then run genCategories function.
-        setTimeout(triviaGameObj.genCategories, 1000);
+        setTimeout(triviaGameObj.genCategories, 3000);
     },
 
     shuffleArray: function (arr) {

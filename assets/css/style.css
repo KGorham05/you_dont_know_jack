@@ -140,7 +140,24 @@ body {
     border: 2px solid transparent;
 }
 
+
+/* Multiplayer Instructions Screen */
+
+#multiplayer-instructions {
+    font-size: 48px;
+}
+
+#multiplayer-instructions p {
+    margin-bottom: 20px;
+}
+
+/* Current Question Screen */
+#current-question-screen {
+    font-size: 48px;
+}
+
+
 /* Keep this below .seven and .twenty-one so it's not overwritten */
 .current-choice {
-    border: 2px solid fuchsia;
+    border: 2px solid #13CA91;
 }
