@@ -80,13 +80,13 @@ input:focus {
     bottom: 40px;
 }
 
-#setup-game-screen p {
+/* #setup-game-screen p {
     position: relative;
     top: 200px;
     float: left;
     clear: both;
     text-align: center;
-}
+} */
 
 #select-one-player {
     padding:   5px 25px 5px 25px;
