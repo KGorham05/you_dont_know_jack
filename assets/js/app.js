@@ -766,6 +766,11 @@ triviaGameObj.setupGame();
 
     // is it better to turn on/off multiple event listeners throughout the game, or would it be better to use variables to track the state of the game we're in and trigger different key events - or order and use stopPropogation
     // if the user score is negative, change the text color to red. 
+    
+    // Add a timer to categories screen
+        // if the timer hits 0, randomly select a category  
+
+    // Change current question screen to "Round Counter Screen"
 
 // JACK _ BOX
 

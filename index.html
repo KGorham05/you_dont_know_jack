@@ -11,8 +11,12 @@
     <link href="https://fonts.googleapis.com/css?family=Notable|Pacifico&display=swap" rel="stylesheet">
     <!-- CSS Animation Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <!-- Reset CSS then my CSS -->
-    <link rel="stylesheet" href="./assets/css/reset.css">
+    <!-- Reset CSS -->
+    <!-- <link rel="stylesheet" href="./assets/css/reset.css"> -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Local CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
@@ -20,14 +24,24 @@
 <body>
 
     <div id="main-bg" class="full-screen">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="setup-game-screen">
+                        <h1 id="game-title" class="tilt">Human Trivia</h1>
+                        <h3 id="sub-title" class="tilt">For Aliens!</h3>
 
-        <div id="setup-game-screen">
-            <h1 id="game-title" class="tilt">Human Trivia</h1>
-            <h3 id="sub-title" class="tilt">For Aliens!</h3>
-            <p id="select-one-player" class="current-choice">One Player</p>
-            <p id="select-two-player">Two Players</p>
-            <p id="start-game">Press <span id="enter">ENTER</span> to start!</p>
+                        <p id="select-one-player" class="current-choice">One Player</p>
+                        <p id="select-two-player">Two Players</p>
+                        <p id="start-game">Press <span id="enter">ENTER</span> to start!</p>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
+
+
 
         <div id="input-player-name" class="hide full-screen flex center f-column">
             <h1 id="current-player-text">Player One</h1>
@@ -36,7 +50,8 @@
         </div>
 
         <div id="select-game-length" class="hide full-screen flex center">
-            <h1>Is this a <span class="current-choice seven">7</span> or <span class="twenty-one">21</span> question game?</h1>
+            <h1>Is this a <span class="current-choice seven">7</span> or <span class="twenty-one">21</span> question
+                game?</h1>
         </div>
 
         <div id="multiplayer-instructions" class="hide full-screen flex center f-column">
@@ -49,7 +64,7 @@
         </div>
 
         <div id="categories-screen" class="hide full-screen flex center f-column">
-            <h1><span id="current-player"></span> Choose a Category</h1>
+            <h1>Choose a Category</h1>
             <div id="categories-display"></div>
         </div>
 
