@@ -240,12 +240,12 @@ var triviaGameObj = {
     },
 
     changeNumPlayers: function () {
-        if ($("#select-one-player").hasClass('current-choice')) {
-            $("#select-one-player").removeClass('current-choice');
-            $("#select-two-player").addClass('current-choice');
+        if ($(".select-one-player").hasClass('current-choice')) {
+            $(".select-one-player").removeClass('current-choice');
+            $(".select-two-player").addClass('current-choice');
         } else {
-            $("#select-two-player").removeClass('current-choice');
-            $("#select-one-player").addClass('current-choice');
+            $(".select-two-player").removeClass('current-choice');
+            $(".select-one-player").addClass('current-choice');
         }
     },
 

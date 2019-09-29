@@ -65,19 +65,11 @@ input:focus {
 #game-title {
     font-size: 125px;
     text-transform: uppercase;
-    font-weight: 500;
-    /* font-family: 'Notable', sans-serif; */
-    position: relative;
-    top: 50px;
-    left: 100px;   
 }
 
 #sub-title {
     font-size: 36px;
-    /* font-family: 'Pacifico', cursive; */
-    position: relative;
-    left: 600px;
-    bottom: 40px;
+    text-transform: uppercase;
 }
 
 /* #setup-game-screen p {
@@ -88,25 +80,33 @@ input:focus {
     text-align: center;
 } */
 
-#select-one-player {
+.select-one-player {
+    margin-top: 120px;
     padding:   5px 25px 5px 25px;
-    left: 850px;
     font-size: 40px;
+    display: inline-block;
+    border: 2px solid transparent;
 }
 
-#select-two-player {
+.select-two-player {
     padding: 5px 20px 5px 20px;
-    left: 750px;
     font-size: 75px;
+    display: inline-block;
+    border: 2px solid transparent;
+    position: relative;
+    bottom: 20px;
 }
 
 #start-game {
-    left: 618px;
-    font-size: 24px
+    font-size: 24px;
+    position: relative;
+    bottom: 80px;
 }
 
 #enter {
     font-size: 175px;
+    /* position: relative;
+    bottom: 100px; */
 }
 
 /* Input Player Names Screen */
