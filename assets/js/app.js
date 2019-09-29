@@ -195,10 +195,10 @@ var triviaGameObj = {
     curAnswers: [],
     curCorrectAnswer: "",
     curValue: 0,
+    curPlayer: "",
     playerOneNameColleted: false,
     multiplayerGame: false,
     playerOneTurn: true,
-    curPlayer: "",
     timer: null,
     questionArray: [...sourceArray],
 
