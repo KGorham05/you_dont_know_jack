@@ -168,12 +168,20 @@ input:focus {
     font-family: 'Open Sans', sans-serif;
 }
 
+
+/*  Categories Screen */
 #categories-screen {
     font-size: 48px;
 }
 
 #categories-screen h1 {
     font-size: 98px;
+}
+
+/* Question Screen */
+#question-screen {
+    font-size: 28px;
+    margin-top: 50px;
 }
 
 /* Keep this below .seven and .twenty-one so it's not overwritten */

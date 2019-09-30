@@ -493,14 +493,14 @@ var triviaGameObj = {
         $(".scoreboard").html("");
 
         // set the text of player 1's score
-        var pOneScore = $("<h1>");
+        var pOneScore = $("<p>");
         pOneScore.text(`${triviaGameObj.playerOneName}'s Score: $ ${triviaGameObj.playerOneScore.toString()}`);
         $(".scoreboard").append(pOneScore);
 
         // if its a 2 player game
         if (triviaGameObj.multiplayerGame) {
 
-            var pTwoScore = $("<h1>");
+            var pTwoScore = $("<p>");
             // set the text of player 2's score 
             pTwoScore.text(`${triviaGameObj.playerTwoName}'s Score: $ ${triviaGameObj.playerTwoScore.toString()}`);
             // append player 2 score to the scoreboard 
@@ -523,7 +523,7 @@ var triviaGameObj = {
         triviaGameObj.counter = 20;
         triviaGameObj.timer = setInterval(triviaGameObj.countdown, 1000);
         // build the question text
-        var headEle = $("<h1>").text(triviaGameObj.curQuestionText);
+        var headEle = $("<p>").text(triviaGameObj.curQuestionText);
         $("#question-screen").append(headEle);
         // build the .scoreboard
         var scoreboard = $("<div class='scoreboard'></div>");
