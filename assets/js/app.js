@@ -413,8 +413,15 @@ var triviaGameObj = {
 
     genCategories: function () {
 
+        $("#categories-screen").text("");
+        var title = $("<h1>Choose a Category</h1>");
+        var turn = $("<p id='turn-display'>");
+        var catDisplay = $(`<div id="categories-display" class="center"></div>`)
+
+        $("#categories-screen").append(title, turn, catDisplay);
         // remove previous categories from the display 
         $("#categories-display").text("");
+        
         // hide current ? screen
         $('#current-question-screen').addClass('hide');
         // show this screen
@@ -425,7 +432,7 @@ var triviaGameObj = {
         // if the game is multiplayer
         if (triviaGameObj.multiplayerGame) {
             // build an element to display who's turn it is to pick
-            var turn = $("<p id='turn-display'>");
+            $("#turn-display").text("");
             // if it is player one's turn to pick
             if (triviaGameObj.playerOneTurn) {
                 // flip flag
