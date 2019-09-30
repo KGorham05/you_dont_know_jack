@@ -421,6 +421,27 @@ var triviaGameObj = {
         $('#categories-screen').removeClass('hide');
         // shuffle the new array
         triviaGameObj.questionArray = triviaGameObj.shuffleArray(triviaGameObj.questionArray);
+        
+        // if the game is multiplayer
+        if (triviaGameObj.multiplayerGame) {
+            // build an element to display who's turn it is to pick
+            var turn = $("<p id='turn-display'>");
+            // if it is player one's turn to pick
+            if (triviaGameObj.playerOneTurn) {
+                // flip flag
+                triviaGameObj.playerOneTurn = false;
+                // display Player One's turn to pick
+                turn.text(`${triviaGameObj.playerOneName}'s turn to pick!`);
+                $("#categories-screen").append(turn);
+            } else {
+                // flip flag
+                triviaGameObj.playerOneTurn = true;
+                // Display Player Two's turn to pick
+                turn.text(`${triviaGameObj.playerTwoName}'s turn to pick!`)
+                $("#categories-screen").append(turn);
+            };
+        }
+        
         // use a loop to create 3 variables to hold the category data
         for (var i = 0; i < 3; i++) {
             // create a paragraph element, set the value = i, 
@@ -433,25 +454,7 @@ var triviaGameObj = {
             p.appendTo('#categories-display');
         };
 
-        // if the game is multiplayer
-        if (triviaGameObj.multiplayerGame) {
-            // build an element to display who's turn it is to pick
-            var turn = $("<p>");
-            // if it is player one's turn to pick
-            if (triviaGameObj.playerOneTurn) {
-                // flip flag
-                triviaGameObj.playerOneTurn = false;
-                // display Player One's turn to pick
-                turn.text(`${triviaGameObj.playerOneName}'s turn to pick!`);
-                $("#categories-display").append(turn);
-            } else {
-                // flip flag
-                triviaGameObj.playerOneTurn = true;
-                // display Player Two's turn to pick
-                turn.text(`${triviaGameObj.playerTwoName}'s turn to pick!`)
-                $("#categories-display").append(turn);
-            };
-        }
+       
 
         // select a category screen 
         $(document).on('keydown', function (e) {

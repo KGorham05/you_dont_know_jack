@@ -1,7 +1,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
-    color: black;
+    color: rgb(26, 26, 26);
 }
 
 input:focus {
@@ -162,16 +162,19 @@ input:focus {
     margin-bottom: 20px;
 }
 
-/* Current Question Screen */
-#current-question-screen {
-    font-size: 125px;
+/* ROUND X screen */
+#current-question-screen h1 {
+    font-size: 200px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #categories-screen {
     font-size: 48px;
 }
 
-
+#categories-screen h1 {
+    font-size: 98px;
+}
 
 /* Keep this below .seven and .twenty-one so it's not overwritten */
 .current-choice {
