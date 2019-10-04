@@ -13,9 +13,8 @@ input:focus {
     display: none !important;
 }
 
-.full-screen {
+.full-height {
     height: 100vh;
-    width: 100vw;
     overflow: hidden;
 }
 

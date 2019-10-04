@@ -21,7 +21,7 @@
 
 <body>
 
-    <div id="main-bg" class="full-screen">
+    <div id="main-bg" class="full-height">
 
         <div class="container-fluid">
 
@@ -59,40 +59,40 @@
 
             </div>
 
-        <!-- End of container -->
+            <!-- End of container-fluid -->
         </div>
 
-        <div id="input-player-name" class="hide full-screen flex center f-column">
-            <h1 id="current-player-text">Player One</h1>
-            <h1 id="name-input-instructions">Enter your primitive human name!</h1>
-            <input type="text" id="name-input" autofocus="autofocus" />
-        </div>
+        <div class="container">
 
-        <div id="select-game-length" class="hide full-screen flex center">
-            <h1>Is this a <span class="current-choice seven">7</span> or <span class="twenty-one">21</span> question
-                game?</h1>
-        </div>
+            <div id="input-player-name" class="hide full-height flex center f-column">
+                <h1 id="current-player-text">Player One</h1>
+                <h1 id="name-input-instructions">Enter your primitive human name!</h1>
+                <input type="text" id="name-input" autofocus="autofocus" />
+            </div>
 
-        <div id="multiplayer-instructions" class="hide full-screen flex center f-column">
-            <p>Player One, press <span class="q">"Q"</span> to buzz in!</p>
-            <p>Player Two, press <span class="p">"P"</span> to buzz in!</p>
-        </div>
+            <div id="select-game-length" class="hide full-height flex center">
+                <h1>Is this a <span class="current-choice seven">7</span> or <span class="twenty-one">21</span> question
+                    game?</h1>
+            </div>
 
-        <div id="current-question-screen" class="hide full-screen flex center">
-            <h1>ROUND <span class="question-counter"></span></h1>
-        </div>
+            <div id="multiplayer-instructions" class="hide full-height flex center f-column">
+                <p>Player One, press <span class="q">"Q"</span> to buzz in!</p>
+                <p>Player Two, press <span class="p">"P"</span> to buzz in!</p>
+            </div>
 
-        <div id="categories-screen" class="hide full-screen flex center f-column">
-        </div>
+            <div id="current-question-screen" class="hide full-height flex center">
+                <h1>ROUND <span class="question-counter"></span></h1>
+            </div>
 
-        <div class="container full-screen">
+            <div id="categories-screen" class="hide full-height flex center f-column">
+            </div>
+
             <div id="question-screen" class="hide flex f-column text-center"></div>
 
+            <div id="game-over-screen" class="hide full-height flex center f-column"></div>
+
+        <!-- End container -->
         </div>
-
-        <div id="game-over-screen" class="hide full-screen flex center f-column"></div>
-
-
 
     </div>
 
